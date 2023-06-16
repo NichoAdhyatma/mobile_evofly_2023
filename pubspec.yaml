@@ -1,0 +1,22 @@
+name: evofly
+version: 1.0.0+1
+publish_to: none
+description: evofly app for gemastik 2023.
+environment: 
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  firebase_core: ^2.14.0
+  get: 4.6.5
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+

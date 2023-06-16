@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "454380954716",
+    "project_id": "evofly-767be",
+    "storage_bucket": "evofly-767be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454380954716:android:9b684af54745fad53c3299",
+        "android_client_info": {
+          "package_name": "com.evofly.gemastik.evofly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454380954716-h4kmg8bm20inbrubde7b8it18fe88cgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvaYCSm2VViq-hKGdqBU1j6aIdWdq-jYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454380954716-h4kmg8bm20inbrubde7b8it18fe88cgi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "454380954716-5cl6d1vd57hphh66ha5f1j4o717v84jr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.evofly.gemastik.evofly.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
