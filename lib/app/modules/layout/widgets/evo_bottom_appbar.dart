@@ -1,23 +1,23 @@
-import 'package:Evofly/app/modules/home/controllers/home_controller.dart';
+import 'package:Evofly/app/const/base_theme.dart';
+import 'package:Evofly/app/modules/layout/controllers/layout_controller.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../const/app_theme.dart';
+class EvoBottomBar extends StatelessWidget {
+  const EvoBottomBar({super.key, required this.controller});
 
-class EvoBottomBar extends StatelessWidget{
-  const EvoBottomBar({
-    super.key,
-    required this.controller
-  });
-
-  final HomeController controller;
+  final LayoutController controller;
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Padding(
-        padding: const EdgeInsets.all(16.0),
+      () => Padding(
+        padding: const EdgeInsets.only(
+          left: 16.0,
+          right: 16.0,
+          bottom: 16.0,
+        ),
         child: BottomBarSalomon(
           boxShadow: const [
             BoxShadow(
@@ -45,10 +45,10 @@ class EvoBottomBar extends StatelessWidget{
           heightItem: 40,
           iconSize: 28,
           titleStyle: const TextStyle(fontSize: 12),
-          color: ThemeConfig.secondaryColor,
-          backgroundColor: ThemeConfig.primaryColor,
-          colorSelected: ThemeConfig.primaryColor,
-          backgroundSelected: ThemeConfig.secondaryColor,
+          color: BaseTheme.secondaryColor,
+          backgroundColor: BaseTheme.primaryColor,
+          colorSelected: BaseTheme.primaryColor,
+          backgroundSelected: BaseTheme.secondaryColor,
           borderRadius: BorderRadius.circular(20),
           indexSelected: controller.visit.value,
           onTap: (index) => controller.changeVisit(index),

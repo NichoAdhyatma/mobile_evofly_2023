@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets/evo_appbar.dart';
-import '../../../widgets/evo_bottom_appbar.dart';
+import '../widgets/home_card_list.dart';
 import '../controllers/home_controller.dart';
+import '../widgets/evo_searchbar.dart';
+import '../widgets/umkm_card.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -11,17 +12,29 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Get.height * 0.9),
-        child: const EvoAppBar(),
+      body: ListView(
+        children: const [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 36,
+              vertical: 40,
+            ),
+            child: EvoSearchBar(),
+          ),
+          //card
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: HomeCardList(),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: UmkmCard(),
+          ),
+        ],
       ),
-      body: const Center(
-        child: Text(
-          'HomeView',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-      bottomNavigationBar: EvoBottomBar(controller: controller),
     );
   }
 }

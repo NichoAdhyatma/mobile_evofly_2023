@@ -1,25 +1,39 @@
+import 'package:Evofly/app/const/base_theme.dart';
 import 'package:flutter/material.dart';
 
 abstract class ThemeConfig {
   //initialize
   ThemeConfig._();
 
-  //color configuration
-  static const primaryColor = Colors.white;
-  static const secondaryColor = Color(0xff7C8498);
-  static const tertiaryColor = Color(0xff374957);
-
   //theme-data configuration
   static ThemeData themeData = ThemeData(
+    scaffoldBackgroundColor: BaseTheme.scaffoldBgColor,
     fontFamily: 'Poppins',
     iconTheme: const IconThemeData(
-      color: tertiaryColor,
+      color: BaseTheme.tertiaryColor,
     ),
     colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryColor,
-      primary: primaryColor,
-      secondary: secondaryColor,
-      tertiary: tertiaryColor,
+      seedColor: BaseTheme.primaryColor,
+      primary: BaseTheme.primaryColor,
+      secondary: BaseTheme.secondaryColor,
+      tertiary: BaseTheme.tertiaryColor,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: BaseTheme.secondaryColor,
+      selectionHandleColor: BaseTheme.secondaryColor,
+      selectionColor: BaseTheme.secondaryColor,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: BaseTheme.whiteColor,
+      filled: true,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 14,
+      ),
+      prefixIconColor: BaseTheme.secondaryColor,
+      enabledBorder: BaseTheme.inputBorder,
+      focusedBorder: BaseTheme.inputBorder,
+      border: BaseTheme.inputBorder,
     ),
   );
 }
