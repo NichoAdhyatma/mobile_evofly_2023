@@ -35,6 +35,10 @@ class AppPages {
           name: _Paths.VIDEO,
           page: () => const VideoView(),
           binding: VideoBinding(),
+          transitionDuration: const Duration(
+            milliseconds: 330,
+          ),
+          transition: Transition.cupertino,
         ),
       ],
     ),

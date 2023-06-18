@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VideoService {
-  void getVideo() async {
-    print("get video running");
-    var data = await FirebaseFirestore.instance.collection('video').get();
-    print(data);
+  CollectionReference videos = FirebaseFirestore.instance.collection('video');
+
+  Future<QuerySnapshot> getVideo() async {
+    QuerySnapshot document = await videos.get();
+    return document;
   }
 }
