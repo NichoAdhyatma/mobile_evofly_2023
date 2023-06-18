@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/edukasi/bindings/edukasi_binding.dart';
 import '../modules/edukasi/video/bindings/video_binding.dart';
+import '../modules/edukasi/video/video_player/bindings/video_player_binding.dart';
+import '../modules/edukasi/video/video_player/views/video_player_view.dart';
 import '../modules/edukasi/video/views/video_view.dart';
 import '../modules/edukasi/views/edukasi_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -39,6 +41,17 @@ class AppPages {
             milliseconds: 330,
           ),
           transition: Transition.cupertino,
+          children: [
+            GetPage(
+              name: _Paths.VIDEO_PLAYER,
+              page: () => const VideoPlayerView(),
+              binding: VideoPlayerBinding(),
+              transitionDuration: const Duration(
+                milliseconds: 330,
+              ),
+              transition: Transition.cupertino,
+            ),
+          ],
         ),
       ],
     ),

@@ -24,6 +24,18 @@ abstract class ThemeConfig {
       selectionHandleColor: BaseTheme.secondaryColor,
       selectionColor: BaseTheme.secondaryColor,
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: BaseTheme.secondaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: BaseTheme.whiteColor,
       filled: true,

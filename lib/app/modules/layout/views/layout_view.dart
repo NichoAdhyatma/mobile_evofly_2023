@@ -14,7 +14,10 @@ class LayoutView extends GetView<LayoutController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(Get.width, Get.height),
+        preferredSize: Size(
+          Get.width,
+          Get.height,
+        ),
         child: const EvoAppBar(),
       ),
       body: const HomeView(),
