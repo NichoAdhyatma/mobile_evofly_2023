@@ -9,11 +9,12 @@ import '../widgets/evo_bottom_appbar.dart';
 
 class LayoutView extends GetView<LayoutController> {
   const LayoutView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Get.height * 0.9),
+        preferredSize: Size(Get.width, Get.height),
         child: const EvoAppBar(),
       ),
       body: const HomeView(),

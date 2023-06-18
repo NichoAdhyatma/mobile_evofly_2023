@@ -1,4 +1,6 @@
+import 'package:Evofly/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'evo_card.dart';
 
@@ -9,30 +11,33 @@ class HomeCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Flexible(
+        const Flexible(
           flex: 1,
           child: EvoCard(
             title: 'Content Creator',
             imageUrl: 'assets/images/content_creator.png',
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 15,
         ),
         Flexible(
           flex: 1,
-          child: EvoCard(
-            title: 'Edukasi Bisnis',
-            imageUrl: 'assets/images/edukasi.png',
+          child: InkWell(
+            onTap: () => Get.toNamed(Routes.EDUKASI),
+            child: const EvoCard(
+              title: 'Edukasi Bisnis',
+              imageUrl: 'assets/images/edukasi.png',
+            ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 15,
         ),
-        Flexible(
+        const Flexible(
           flex: 1,
           child: EvoCard(
             title: 'Chat dengan Mentor',

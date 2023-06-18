@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../const/base_theme.dart';
+import '../../../themes/base_theme.dart';
 
 class UmkmCard extends StatelessWidget {
   const UmkmCard({

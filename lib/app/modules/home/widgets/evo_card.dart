@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../const/base_theme.dart';
+import '../../../themes/base_theme.dart';
 
 class EvoCard extends StatelessWidget {
   const EvoCard({

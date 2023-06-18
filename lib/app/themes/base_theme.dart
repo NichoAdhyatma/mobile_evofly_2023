@@ -19,4 +19,9 @@ abstract class BaseTheme {
       style: BorderStyle.none,
     ),
   );
+
+  static const mediumText = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: shadowColor,
+  );
 }

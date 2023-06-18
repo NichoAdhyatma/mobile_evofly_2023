@@ -1,8 +1,9 @@
-import 'package:Evofly/app/const/base_theme.dart';
 import 'package:Evofly/app/modules/layout/controllers/layout_controller.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../themes/base_theme.dart';
 
 class EvoBottomBar extends StatelessWidget {
   const EvoBottomBar({super.key, required this.controller});
@@ -49,7 +50,7 @@ class EvoBottomBar extends StatelessWidget {
           backgroundColor: BaseTheme.primaryColor,
           colorSelected: BaseTheme.primaryColor,
           backgroundSelected: BaseTheme.secondaryColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(75),
           indexSelected: controller.visit.value,
           onTap: (index) => controller.changeVisit(index),
         ),

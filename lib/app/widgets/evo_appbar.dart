@@ -1,7 +1,8 @@
-import 'package:Evofly/app/const/base_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
+import '../themes/base_theme.dart';
 
 class EvoAppBar extends StatelessWidget {
   const EvoAppBar({

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../modules/edukasi/bindings/edukasi_binding.dart';
+import '../modules/edukasi/video/bindings/video_binding.dart';
+import '../modules/edukasi/video/views/video_view.dart';
 import '../modules/edukasi/views/edukasi_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -24,6 +26,17 @@ class AppPages {
       name: _Paths.EDUKASI,
       page: () => const EdukasiView(),
       binding: EdukasiBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
+      children: [
+        GetPage(
+          name: _Paths.VIDEO,
+          page: () => const VideoView(),
+          binding: VideoBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.LAYOUT,
