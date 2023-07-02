@@ -16,7 +16,10 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
       initState: (_) => controller.initVideo(Get.arguments),
       builder: (VideoPlayerController controller) => Scaffold(
         appBar: controller.isFullScreen
-            ? null
+            ? PreferredSize(
+                preferredSize: Size(Get.width, Get.height),
+                child: const SizedBox.shrink(),
+              )
             : AppBar(
                 leading: IconButton(
                   icon: const Icon(

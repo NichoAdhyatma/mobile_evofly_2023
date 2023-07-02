@@ -48,5 +48,6 @@ abstract class ThemeConfig {
       focusedBorder: BaseTheme.inputBorder,
       border: BaseTheme.inputBorder,
     ),
+    shadowColor: BaseTheme.shadowColor,
   );
 }

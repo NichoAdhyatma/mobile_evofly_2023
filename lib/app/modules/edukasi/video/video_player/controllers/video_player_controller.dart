@@ -24,15 +24,13 @@ class VideoPlayerController extends GetxController {
         forceHD: true,
       ),
     );
+    update();
 
     youtubePlayerController?.addListener(() {
-       setIsPlay(youtubePlayerController!.value.isPlaying);
-       setIsFullScreen(youtubePlayerController!.value.isFullScreen);
+      setIsPlay(youtubePlayerController!.value.isPlaying);
+      setIsFullScreen(youtubePlayerController!.value.isFullScreen);
     });
-
-    update();
   }
-
 
   void playPauseVideo() {
     var playState = youtubePlayerController!.value.isPlaying;
@@ -40,6 +38,7 @@ class VideoPlayerController extends GetxController {
         ? youtubePlayerController?.pause()
         : youtubePlayerController?.play();
     setIsPlay(!playState);
+    youtubePlayerController?.toggleFullScreenMode();
   }
 
   void setIsFullScreen(bool val) {

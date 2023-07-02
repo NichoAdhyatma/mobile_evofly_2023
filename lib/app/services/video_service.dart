@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class VideoService {
   CollectionReference videos = FirebaseFirestore.instance.collection('video');
 
-  Future<QuerySnapshot> getVideo() async {
+  Future<List<QueryDocumentSnapshot<Object?>>> getVideo() async {
     QuerySnapshot document = await videos.get();
-    return document;
+    return document.docs;
   }
 }
