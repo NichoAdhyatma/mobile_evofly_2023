@@ -10,6 +10,7 @@ abstract class BaseTheme {
   static const scaffoldBgColor = Color(0xffEEEEEE);
   static const whiteColor = Color(0xffFFFFFF);
   static const shadowColor = Color(0xff000000);
+  static const grayColor = Color(0xff6C6C6C);
 
   //input-border
   static InputBorder inputBorder = OutlineInputBorder(
@@ -23,5 +24,10 @@ abstract class BaseTheme {
   static const mediumText = TextStyle(
     fontWeight: FontWeight.w500,
     color: shadowColor,
+  );
+
+  static const secondaryText = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: grayColor,
   );
 }

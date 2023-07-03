@@ -1,23 +1,11 @@
+import 'package:Evofly/app/modules/edukasi/artikel/models/artikel_model.dart';
 import 'package:get/get.dart';
 
 class DetailArtikelController extends GetxController {
-  //TODO: Implement DetailArtikelController
+  ArtikelModel? artikelModel;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  initArtikel(ArtikelModel artikelModel) {
+    this.artikelModel = artikelModel;
+    update();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
