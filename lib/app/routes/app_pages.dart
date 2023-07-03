@@ -11,6 +11,8 @@ import '../modules/edukasi/video/video_player/views/video_player_view.dart';
 import '../modules/edukasi/video/views/video_view.dart';
 import '../modules/edukasi/views/edukasi_view.dart';
 import '../modules/edukasi/webinar/bindings/webinar_binding.dart';
+import '../modules/edukasi/webinar/detail_webinar/bindings/detail_webinar_binding.dart';
+import '../modules/edukasi/webinar/detail_webinar/views/detail_webinar_view.dart';
 import '../modules/edukasi/webinar/views/webinar_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -87,6 +89,13 @@ class AppPages {
             milliseconds: 330,
           ),
           transition: Transition.cupertino,
+          children: [
+            GetPage(
+              name: _Paths.DETAIL_WEBINAR,
+              page: () => const DetailWebinarView(),
+              binding: DetailWebinarBinding(),
+            ),
+          ],
         ),
       ],
     ),

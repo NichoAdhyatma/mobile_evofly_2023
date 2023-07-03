@@ -7,6 +7,7 @@ class WebinarController extends GetxController {
   List<WebinarModel> webinars = [];
 
   void fetchWebinar() {
+    webinars.clear();
     WebinarService().getWebinar().then((webinarList) {
       webinars.addAll(webinarList);
       update();

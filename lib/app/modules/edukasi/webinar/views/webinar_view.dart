@@ -20,7 +20,7 @@ class WebinarView extends GetView<WebinarController> {
         builder: (WebinarController controller) => contentBuilder(
           controller.webinars,
           futureService: WebinarService().getWebinar(),
-          routes: Routes.WEBINAR,
+          routes: Routes.DETAIL_WEBINAR,
         ),
       ),
     );
