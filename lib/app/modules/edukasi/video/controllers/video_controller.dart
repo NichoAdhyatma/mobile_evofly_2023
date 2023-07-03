@@ -7,7 +7,7 @@ class VideoController extends GetxController {
   List<VideoModel> videos = [];
   VideoService videoService = VideoService();
 
-  Future<void> fetchVideo() async {
+  void fetchVideo() {
     videos.clear();
     videoService.getVideo().then(
       (videoList) {

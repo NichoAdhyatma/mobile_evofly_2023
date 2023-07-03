@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../modules/edukasi/artikel/bindings/artikel_binding.dart';
+import '../modules/edukasi/artikel/detail_artikel/bindings/detail_artikel_binding.dart';
+import '../modules/edukasi/artikel/detail_artikel/views/detail_artikel_view.dart';
 import '../modules/edukasi/artikel/views/artikel_view.dart';
 import '../modules/edukasi/bindings/edukasi_binding.dart';
 import '../modules/edukasi/video/bindings/video_binding.dart';
@@ -63,6 +65,17 @@ class AppPages {
             milliseconds: 330,
           ),
           transition: Transition.cupertino,
+          children: [
+            GetPage(
+              name: _Paths.DETAIL_ARTIKEL,
+              page: () => const DetailArtikelView(),
+              binding: DetailArtikelBinding(),
+              transitionDuration: const Duration(
+                milliseconds: 330,
+              ),
+              transition: Transition.cupertino,
+            ),
+          ],
         ),
       ],
     ),
