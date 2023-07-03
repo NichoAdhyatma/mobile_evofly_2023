@@ -1,33 +1,19 @@
 import 'package:Evofly/app/services/video_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../models/video_model.dart';
 
 class VideoController extends GetxController {
-  List<VideoModel> video = [];
+  List<VideoModel> videos = [];
   VideoService videoService = VideoService();
 
-  void fetchVideo() {
-    video.clear();
+  Future<void> fetchVideo() async {
+    videos.clear();
     videoService.getVideo().then(
-      (documentList) {
-        if (documentList.isNotEmpty) {
-          assignVideo(documentList);
-        }
+      (videoList) {
+        videos.addAll(videoList);
+        update();
       },
     );
-  }
-
-  void assignVideo(List<QueryDocumentSnapshot<Object?>> documentList) {
-    for (var element in documentList) {
-      video.add(
-        VideoModel(
-          element['title'],
-          element['video_id'],
-        ),
-      );
-    }
-    update();
   }
 }

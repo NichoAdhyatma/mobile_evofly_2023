@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../../../../widgets/back_appbar.dart';
 import '../controllers/video_player_controller.dart';
 import '../widgets/play_controll_button.dart';
 
@@ -20,23 +21,7 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
                 preferredSize: Size(Get.width, Get.height),
                 child: const SizedBox.shrink(),
               )
-            : AppBar(
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: BaseTheme.tertiaryColor,
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-                title: Text(
-                  "Video",
-                  style: BaseTheme.mediumText.copyWith(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
+            : buildAppBar(title: "Video"),
         body: YoutubePlayerBuilder(
           player: YoutubePlayer(
             aspectRatio: 16 / 9,

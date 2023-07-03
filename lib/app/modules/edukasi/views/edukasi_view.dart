@@ -1,5 +1,5 @@
 import 'package:Evofly/app/themes/base_theme.dart';
-import 'package:Evofly/app/widgets/evo_appbar.dart';
+import 'package:Evofly/app/widgets/back_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +12,7 @@ class EdukasiView extends GetView<EdukasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(Get.width, Get.height),
-        child: const EvoAppBar(),
-      ),
+      appBar: buildAppBar(title: "Edukasi"),
       body: Padding(
         padding: const EdgeInsets.only(
           top: 32,
