@@ -66,6 +66,13 @@ class DetailWebinarView extends GetView<DetailWebinarController> {
           ),
         ),
       ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.all(12),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text("Daftar"),
+        ),
+      ),
     );
   }
 }
