@@ -11,6 +11,7 @@ abstract class Routes {
   static const ARTIKEL = _Paths.EDUKASI + _Paths.ARTIKEL;
   static const DETAIL_ARTIKEL =
       _Paths.EDUKASI + _Paths.ARTIKEL + _Paths.DETAIL_ARTIKEL;
+  static const WEBINAR = _Paths.EDUKASI + _Paths.WEBINAR;
 }
 
 abstract class _Paths {
@@ -22,4 +23,5 @@ abstract class _Paths {
   static const VIDEO_PLAYER = '/video-player';
   static const ARTIKEL = '/artikel';
   static const DETAIL_ARTIKEL = '/detail-artikel';
+  static const WEBINAR = '/webinar';
 }

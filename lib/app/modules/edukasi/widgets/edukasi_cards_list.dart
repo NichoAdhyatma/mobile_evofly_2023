@@ -35,7 +35,7 @@ class CardEdukasiList extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 30,
         ),
         Text(
           "Artikel",
@@ -56,7 +56,7 @@ class CardEdukasiList extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 30,
         ),
         Text(
           "Webinar",
@@ -67,10 +67,13 @@ class CardEdukasiList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const EdukasiCard(
-          desc: "Diskusi ahli, kelas online, pelatihan interaktif, "
-              "dan juga pembelajaran kolaboratif terkait UMKM",
-          icon: FontAwesomeIcons.desktop,
+        GestureDetector(
+          onTap: () => Get.toNamed(Routes.WEBINAR),
+          child: const EdukasiCard(
+            desc: "Diskusi ahli, kelas online, pelatihan interaktif, "
+                "dan juga pembelajaran kolaboratif terkait UMKM",
+            icon: FontAwesomeIcons.desktop,
+          ),
         ),
       ],
     );

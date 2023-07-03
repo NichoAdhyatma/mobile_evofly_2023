@@ -15,15 +15,12 @@ class VideoView extends GetView<VideoController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(title: "Video Edukasi"),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: GetBuilder<VideoController>(
-          initState: (_) => controller.fetchVideo(),
-          builder: (VideoController controller) => contentBuilder(
-              controller.videos,
-              futureService: VideoService().getVideo(),
-              routes: Routes.VIDEO_PLAYER),
-        ),
+      body: GetBuilder<VideoController>(
+        initState: (_) => controller.fetchVideo(),
+        builder: (VideoController controller) => contentBuilder(
+            controller.videos,
+            futureService: VideoService().getVideo(),
+            routes: Routes.VIDEO_PLAYER),
       ),
     );
   }
