@@ -1,11 +1,11 @@
 import 'package:Evofly/app/modules/edukasi/video/models/video_model.dart';
+import 'package:Evofly/app/services/base_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class VideoService {
-  CollectionReference videos = FirebaseFirestore.instance.collection('video');
+class VideoService extends BaseService {
 
   Future<List<VideoModel>> getVideo() async {
-    QuerySnapshot document = await videos.get();
+    QuerySnapshot document = await firestore.collection("video").get();
 
     List<VideoModel> listVideoModel = [];
 

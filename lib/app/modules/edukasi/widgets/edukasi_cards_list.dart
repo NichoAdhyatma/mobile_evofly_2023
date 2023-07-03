@@ -46,11 +46,14 @@ class CardEdukasiList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const EdukasiCard(
-          desc: "Tren terkini,  riset pasar, studi kasus, serta"
-              " saran dan rekomendasi dalam "
-              "pengembangan bisnis",
-          icon: FontAwesomeIcons.newspaper,
+        GestureDetector(
+          onTap: () => Get.toNamed(Routes.ARTIKEL),
+          child: const EdukasiCard(
+            desc: "Tren terkini,  riset pasar, studi kasus, serta"
+                " saran dan rekomendasi dalam "
+                "pengembangan bisnis",
+            icon: FontAwesomeIcons.newspaper,
+          ),
         ),
         const SizedBox(
           height: 10,

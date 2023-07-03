@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-
-import '../../../../routes/app_pages.dart';
-import '../../../../themes/base_theme.dart';
-import '../const/url.dart';
-import '../models/video_model.dart';
 import 'package:get/get.dart';
 
-class VideoCard extends StatelessWidget {
-  const VideoCard({
-    super.key,
-    required this.video,
-  });
+import '../themes/base_theme.dart';
 
-  final VideoModel video;
+class ContentCard extends StatelessWidget {
+  const ContentCard({
+    Key? key,
+    required this.item,
+    required this.routes,
+  }) : super(key: key);
+
+  final dynamic item;
+  final String routes;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +20,7 @@ class VideoCard extends StatelessWidget {
         bottom: 12,
       ),
       child: GestureDetector(
-        onTap: () =>
-            Get.toNamed(Routes.VIDEO_PLAYER, arguments: video),
+        onTap: () => Get.toNamed(routes, arguments: item),
         child: Material(
           color: BaseTheme.whiteColor,
           elevation: 5,
@@ -42,7 +40,7 @@ class VideoCard extends StatelessWidget {
                   ),
                   image: DecorationImage(
                       image: NetworkImage(
-                        "${EvoUrl.imageYtUrl}/${video.videoId}/0.jpg",
+                        item.imageUrl,
                       ),
                       fit: BoxFit.cover),
                 ),
@@ -51,7 +49,7 @@ class VideoCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    video.title,
+                    item.title,
                     style: BaseTheme.mediumText.copyWith(
                       fontSize: 15,
                     ),
