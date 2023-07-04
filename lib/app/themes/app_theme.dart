@@ -34,6 +34,7 @@ abstract class ThemeConfig {
           horizontal: 16,
           vertical: 12,
         ),
+        disabledBackgroundColor: BaseTheme.secondaryColor.withOpacity(0.6),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -47,6 +48,7 @@ abstract class ThemeConfig {
       enabledBorder: BaseTheme.inputBorder,
       focusedBorder: BaseTheme.inputBorder,
       border: BaseTheme.inputBorder,
+      labelStyle: BaseTheme.mediumText,
     ),
     shadowColor: BaseTheme.shadowColor,
   );

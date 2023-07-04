@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/auth/login/bindings/login_binding.dart';
+import '../modules/auth/login/views/login_view.dart';
 import '../modules/edukasi/artikel/bindings/artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/bindings/detail_artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/views/detail_artikel_view.dart';
@@ -24,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LAYOUT;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -103,6 +105,11 @@ class AppPages {
       name: _Paths.LAYOUT,
       page: () => const LayoutView(),
       binding: LayoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }

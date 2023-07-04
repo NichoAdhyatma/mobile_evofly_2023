@@ -1,10 +1,9 @@
 import 'package:Evofly/app/helper/evo_snackbar.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ConnectionState extends GetxController {
-  Rx<ConnectivityResult>? connectionState;
-
   @override
   void onInit() {
     connectionStream();
@@ -12,8 +11,9 @@ class ConnectionState extends GetxController {
   }
 
   void connectionStream() {
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      connectionState?.value = result;
+    Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) async {
       if (result == ConnectivityResult.none) {
         showErrorSnackbar(
             title: "Koneksi internet tidak ada",
@@ -23,5 +23,9 @@ class ConnectionState extends GetxController {
             title: "Terhubung ke interenet", message: "Kembali Online");
       }
     });
+  }
+
+  Future<bool> isConnected() async {
+    return await InternetConnectionChecker().hasConnection;
   }
 }

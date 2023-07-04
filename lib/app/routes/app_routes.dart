@@ -14,6 +14,7 @@ abstract class Routes {
   static const WEBINAR = _Paths.EDUKASI + _Paths.WEBINAR;
   static const DETAIL_WEBINAR =
       _Paths.EDUKASI + _Paths.WEBINAR + _Paths.DETAIL_WEBINAR;
+  static const LOGIN =_Paths.LOGIN;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const DETAIL_ARTIKEL = '/detail-artikel';
   static const WEBINAR = '/webinar';
   static const DETAIL_WEBINAR = '/detail-webinar';
+  static const LOGIN = '/login';
 }
