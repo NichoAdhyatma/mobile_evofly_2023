@@ -1,10 +1,9 @@
 import 'package:Evofly/app/helper/evo_snackbar.dart';
-import 'package:Evofly/app/routes/app_pages.dart';
 import 'package:Evofly/app/services/base_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
 
 class AuthService extends BaseService {
+
   Future<void> register(String name, String email, String password) async {
     try {
       final UserCredential credential =
@@ -13,8 +12,6 @@ class AuthService extends BaseService {
         password: password,
       );
       storeUser(name, credential);
-
-      Get.offAllNamed(Routes.LAYOUT);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showErrorSnackbar(
@@ -31,8 +28,6 @@ class AuthService extends BaseService {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
-      Get.offAllNamed(Routes.LAYOUT);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showErrorSnackbar(
@@ -42,6 +37,19 @@ class AuthService extends BaseService {
         print('Wrong password provided for that user.');
       }
     }
+  }
+
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
+  }
+
+  Future<Map<String, dynamic>?> getUserData() async {
+    var user = await firestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser?.uid)
+        .get();
+
+    return user.data();
   }
 
   Future<void> storeUser(String name, UserCredential credential) async {

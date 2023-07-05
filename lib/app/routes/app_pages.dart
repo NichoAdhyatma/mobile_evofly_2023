@@ -18,13 +18,12 @@ import '../modules/edukasi/webinar/bindings/webinar_binding.dart';
 import '../modules/edukasi/webinar/detail_webinar/bindings/detail_webinar_binding.dart';
 import '../modules/edukasi/webinar/detail_webinar/views/detail_webinar_view.dart';
 import '../modules/edukasi/webinar/views/webinar_view.dart';
-import '../modules/home/bindings/home_binding.dart';
+import '../modules/history/views/history_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/layout/bindings/layout_binding.dart';
 import '../modules/layout/views/layout_view.dart';
 import '../modules/middleware/bindings/middleware_binding.dart';
 import '../modules/middleware/views/middleware_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 
 part 'app_routes.dart';
@@ -38,7 +37,6 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
-      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.EDUKASI,
@@ -116,6 +114,10 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.REGISTER,
@@ -129,12 +131,15 @@ class AppPages {
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
-      binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.MIDDLEWARE,
       page: () => const MiddlewareView(),
       binding: MiddlewareBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY,
+      page: () => const HistoryView(),
     ),
   ];
 }

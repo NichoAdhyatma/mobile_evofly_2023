@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../helper/connection_state.dart';
 import '../controllers/middleware_controller.dart';
 
 class MiddlewareBinding extends Bindings {
@@ -8,5 +9,6 @@ class MiddlewareBinding extends Bindings {
     Get.lazyPut<MiddlewareController>(
       () => MiddlewareController(),
     );
+    Get.put(ConnectionState(), permanent: true);
   }
 }

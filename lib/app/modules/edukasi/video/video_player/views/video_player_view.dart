@@ -16,15 +16,9 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
     return GetBuilder<VideoPlayerController>(
       initState: (_) => controller.initVideo(Get.arguments),
       builder: (VideoPlayerController controller) => Scaffold(
-        appBar: controller.isFullScreen
-            ? PreferredSize(
-                preferredSize: Size(Get.width, Get.height),
-                child: const SizedBox.shrink(),
-              )
-            : buildAppBar(title: "Video"),
+
         body: YoutubePlayerBuilder(
           player: YoutubePlayer(
-            aspectRatio: 16 / 9,
             controller: controller.youtubePlayerController!,
             showVideoProgressIndicator: true,
             progressIndicatorColor: BaseTheme.tertiaryColor,
@@ -35,13 +29,9 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
             ),
           ),
           builder: (BuildContext context, Widget videoPlayer) {
-            return ListView(
+            return Column(
               children: [
-                SizedBox(
-                  width: Get.width,
-                  height: Get.height * 0.3,
-                  child: videoPlayer,
-                ),
+                videoPlayer,
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(

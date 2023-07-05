@@ -19,6 +19,8 @@ class LoginController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    emailFocus.dispose();
+    passwordFocus.dispose();
     super.onClose();
   }
 
@@ -42,16 +44,14 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-
   Future<void> login() async {
     unfocusAll();
-    setButtonLogin(true);
+
     if (isDataValid()) {
+      setButtonLogin(true);
       await AuthService()
           .login(_emailController.text, _passwordController.text)
           .whenComplete(() => setButtonLogin(false));
-    } else {
-      setButtonLogin(false);
     }
   }
 

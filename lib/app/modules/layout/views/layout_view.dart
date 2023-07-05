@@ -1,4 +1,3 @@
-import 'package:Evofly/app/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -20,7 +19,7 @@ class LayoutView extends GetView<LayoutController> {
         ),
         child: const EvoAppBar(),
       ),
-      body: const HomeView(),
+      body: Obx(() => controller.pages[controller.visit.value]),
       bottomNavigationBar: EvoBottomBar(controller: controller),
     );
   }

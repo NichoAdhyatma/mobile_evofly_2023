@@ -55,10 +55,7 @@ class LoginView extends GetView<LoginController> {
                                   Icons.check_circle_rounded,
                                   color: Colors.green[500],
                                 )
-                              : Icon(
-                                  Icons.cancel,
-                                  color: Colors.red[500],
-                                ),
+                              : null,
                         ),
                       ),
                       const SizedBox(
@@ -71,8 +68,8 @@ class LoginView extends GetView<LoginController> {
                               ? ""
                               : "* Wajib diisi alamat email yang valid ",
                           style: BaseTheme.mediumText.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: BaseTheme.secondaryColor,
+                            fontSize: 11,
+                             color: BaseTheme.secondaryColor,
                           ),
                         ),
                       ),
@@ -107,10 +104,7 @@ class LoginView extends GetView<LoginController> {
                                   Icons.check_circle_rounded,
                                   color: Colors.green[500],
                                 )
-                              : Icon(
-                                  Icons.cancel,
-                                  color: Colors.red[500],
-                                ),
+                              : null,
                         ),
                       ),
                       const SizedBox(
@@ -123,7 +117,7 @@ class LoginView extends GetView<LoginController> {
                               ? ""
                               : "* Kata sandi wajib di isi ",
                           style: BaseTheme.mediumText.copyWith(
-                            fontWeight: FontWeight.w400,
+                            fontSize: 11,
                             color: BaseTheme.secondaryColor,
                           ),
                         ),
@@ -154,7 +148,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +163,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
