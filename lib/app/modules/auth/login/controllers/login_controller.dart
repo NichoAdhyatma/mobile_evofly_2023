@@ -1,7 +1,6 @@
-import 'package:Evofly/app/helper/evo_snackbar.dart';
+import 'package:Evofly/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginController extends GetxController {
   final TextEditingController _emailController = TextEditingController();
@@ -17,15 +16,14 @@ class LoginController extends GetxController {
   TextEditingController get passwordController => _passwordController;
 
   @override
-  void onInit() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
 
+  @override
+  void onInit() {
     emailController.addListener(() {
       if (emailController.text.isNotEmpty && emailController.text.isEmail) {
         emailData.value = true;
@@ -44,24 +42,16 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  Future<void> login(String email, String password) async {
+
+  Future<void> login() async {
     unfocusAll();
     setButtonLogin(true);
-    try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .whenComplete(
-            () => setButtonLogin(false),
-          );
-    } on FirebaseAuthException catch (e) {
-      print(e.code);
-      if (e.code == 'user-not-found') {
-        showErrorSnackbar(
-            title: "Pesan Error",
-            message: "Data Yang Kamu Masukan Tidak Valid");
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
+    if (isDataValid()) {
+      await AuthService()
+          .login(_emailController.text, _passwordController.text)
+          .whenComplete(() => setButtonLogin(false));
+    } else {
+      setButtonLogin(false);
     }
   }
 

@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/auth/login/bindings/login_binding.dart';
 import '../modules/auth/login/views/login_view.dart';
+import '../modules/auth/register/bindings/register_binding.dart';
+import '../modules/auth/register/views/register_view.dart';
 import '../modules/edukasi/artikel/bindings/artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/bindings/detail_artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/views/detail_artikel_view.dart';
@@ -20,13 +22,17 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/layout/bindings/layout_binding.dart';
 import '../modules/layout/views/layout_view.dart';
+import '../modules/middleware/bindings/middleware_binding.dart';
+import '../modules/middleware/views/middleware_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.MIDDLEWARE;
 
   static final routes = [
     GetPage(
@@ -110,6 +116,25 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.MIDDLEWARE,
+      page: () => const MiddlewareView(),
+      binding: MiddlewareBinding(),
     ),
   ];
 }

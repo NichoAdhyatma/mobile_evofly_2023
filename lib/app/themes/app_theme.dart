@@ -51,5 +51,17 @@ abstract class ThemeConfig {
       labelStyle: BaseTheme.mediumText,
     ),
     shadowColor: BaseTheme.shadowColor,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateTextStyle.resolveWith(
+          (states) => const TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        foregroundColor:
+            MaterialStateProperty.resolveWith((state) => Colors.grey[500]),
+      ),
+    ),
   );
 }

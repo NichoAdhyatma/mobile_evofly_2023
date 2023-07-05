@@ -2,6 +2,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
+
   static const HOME = _Paths.HOME;
   static const EDUKASI = _Paths.EDUKASI;
   static const LAYOUT = _Paths.LAYOUT;
@@ -14,11 +15,15 @@ abstract class Routes {
   static const WEBINAR = _Paths.EDUKASI + _Paths.WEBINAR;
   static const DETAIL_WEBINAR =
       _Paths.EDUKASI + _Paths.WEBINAR + _Paths.DETAIL_WEBINAR;
-  static const LOGIN =_Paths.LOGIN;
+  static const LOGIN = _Paths.LOGIN;
+  static const REGISTER = _Paths.REGISTER;
+  static const PROFILE = _Paths.PROFILE;
+  static const MIDDLEWARE = _Paths.MIDDLEWARE;
 }
 
 abstract class _Paths {
   _Paths._();
+
   static const HOME = '/home';
   static const EDUKASI = '/edukasi';
   static const LAYOUT = '/layout';
@@ -29,4 +34,7 @@ abstract class _Paths {
   static const WEBINAR = '/webinar';
   static const DETAIL_WEBINAR = '/detail-webinar';
   static const LOGIN = '/login';
+  static const REGISTER = '/register';
+  static const PROFILE = '/profile';
+  static const MIDDLEWARE = '/middleware';
 }
