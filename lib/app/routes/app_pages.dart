@@ -39,10 +39,7 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
-      transitionDuration: const Duration(
-        milliseconds: 330,
-      ),
-      transition: Transition.cupertino,
+
     ),
     GetPage(
       name: _Paths.EDUKASI,
@@ -115,6 +112,10 @@ class AppPages {
       name: _Paths.LAYOUT,
       page: () => const LayoutView(),
       binding: LayoutBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LOGIN,
@@ -142,6 +143,10 @@ class AppPages {
       name: _Paths.MIDDLEWARE,
       page: () => const MiddlewareView(),
       binding: MiddlewareBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.HISTORY,

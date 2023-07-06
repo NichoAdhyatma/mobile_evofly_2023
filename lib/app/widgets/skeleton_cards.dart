@@ -3,7 +3,8 @@ import 'package:shimmer/shimmer.dart';
 
 class SkeletonCardList extends StatelessWidget {
   const SkeletonCardList({
-    super.key, required this.count,
+    super.key,
+    required this.count,
   });
 
   final int count;
@@ -16,13 +17,20 @@ class SkeletonCardList extends StatelessWidget {
       child: ListView.builder(
           itemCount: count,
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 12,
+                left: 12,
+                right: 12,
               ),
-              child: const SizedBox(
-                width: 170,
-                height: 140,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const SizedBox(
+                  width: 170,
+                  height: 140,
+                ),
               ),
             );
           }),

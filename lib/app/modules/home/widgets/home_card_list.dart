@@ -26,7 +26,7 @@ class HomeCardList extends StatelessWidget {
         ),
         Flexible(
           flex: 1,
-          child: InkWell(
+          child: GestureDetector(
             onTap: () => Get.toNamed(Routes.EDUKASI),
             child: const EvoCard(
               title: 'Edukasi Bisnis',
@@ -37,11 +37,14 @@ class HomeCardList extends StatelessWidget {
         const SizedBox(
           width: 15,
         ),
-        const Flexible(
+        Flexible(
           flex: 1,
-          child: EvoCard(
-            title: 'Chat dengan Mentor',
-            imageUrl: 'assets/images/chat_mentor.png',
+          child: GestureDetector(
+            onTap: () => Get.toNamed(Routes.CHAT),
+            child: const EvoCard(
+              title: 'Chat dengan Mentor',
+              imageUrl: 'assets/images/chat_mentor.png',
+            ),
           ),
         ),
       ],

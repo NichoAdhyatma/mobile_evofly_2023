@@ -65,6 +65,8 @@ class AuthService extends BaseService {
       'uid': credential.user?.uid,
       'name': name,
       'email': credential.user?.email,
+      'status': 'offline',
+      'isMentor': false,
     });
   }
 }

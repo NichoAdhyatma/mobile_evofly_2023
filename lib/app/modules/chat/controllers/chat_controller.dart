@@ -4,11 +4,18 @@ import 'package:get/get.dart';
 import '../../auth/models/user.dart';
 
 class ChatController extends GetxController {
-  List<UserModel> mentor = [];
+  RxList<UserModel> mentor = <UserModel>[].obs;
 
-  void fetchMentor() {
-    ChatService().getMentor().then(
-          (listUser) => mentor.addAll(listUser),
-        );
+  @override
+  void onInit() {
+    super.onInit();
+    fetchMentorStream();
+  }
+
+  void fetchMentorStream() async {
+    var streamMentor = await ChatService().getMentorStream();
+    streamMentor.listen((listUser) {
+      mentor.assignAll(listUser);
+    });
   }
 }

@@ -22,4 +22,13 @@ class BaseService {
       return Future.value();
     }
   }
+
+  Stream<T> handleStreamError<T>(Stream<T> Function() streamOperation) {
+    try {
+      return streamOperation();
+    } catch (e) {
+      showErrorSnackbar(title: "Pesan Error", message: "Terjadi Kesalahan");
+      rethrow;
+    }
+  }
 }

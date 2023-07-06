@@ -17,7 +17,7 @@ class EdukasiView extends GetView<EdukasiController> {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              top: 32,
+              top: 20,
               left: 12,
               right: 12,
               bottom: 12
@@ -33,7 +33,7 @@ class EdukasiView extends GetView<EdukasiController> {
                 ),
                 Text(
                   "Pembelajaran untuk pemilik UMKM, maupun Anda yang sedang belajar merintis bisnis.",
-                  style: BaseTheme.mediumText.copyWith(
+                  style: BaseTheme.secondaryText.copyWith(
                     fontSize: 14,
                   ),
                 ),
