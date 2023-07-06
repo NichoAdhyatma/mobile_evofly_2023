@@ -16,7 +16,7 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
     return GetBuilder<VideoPlayerController>(
       initState: (_) => controller.initVideo(Get.arguments),
       builder: (VideoPlayerController controller) => Scaffold(
-
+        appBar: buildAppBar(title: "Video"),
         body: YoutubePlayerBuilder(
           player: YoutubePlayer(
             controller: controller.youtubePlayerController!,
@@ -31,7 +31,7 @@ class VideoPlayerView extends GetView<VideoPlayerController> {
           builder: (BuildContext context, Widget videoPlayer) {
             return Column(
               children: [
-                videoPlayer,
+               Flexible(child: videoPlayer),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(

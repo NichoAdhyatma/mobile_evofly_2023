@@ -11,7 +11,6 @@ class ArtikelController extends GetxController {
     ArtikelService().getArtikel().then(
       (artikelList) {
         artikels.addAll(artikelList);
-        update();
       },
     );
   }

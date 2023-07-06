@@ -13,32 +13,38 @@ class EdukasiView extends GetView<EdukasiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(title: "Edukasi"),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 32,
-          left: 12,
-          right: 12,
-        ),
-        child: ListView(
-          children: [
-            Text(
-              "Edukasi Bisnis",
-              style: BaseTheme.mediumText.copyWith(
-                fontSize: 32,
-              ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 32,
+              left: 12,
+              right: 12,
+              bottom: 12
             ),
-            Text(
-              "Pembelajaran untuk pemilik UMKM, maupun Anda yang sedang belajar merintis bisnis.",
-              style: BaseTheme.mediumText.copyWith(
-                fontSize: 14,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Edukasi Bisnis",
+                  style: BaseTheme.mediumText.copyWith(
+                    fontSize: 32,
+                  ),
+                ),
+                Text(
+                  "Pembelajaran untuk pemilik UMKM, maupun Anda yang sedang belajar merintis bisnis.",
+                  style: BaseTheme.mediumText.copyWith(
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const CardEdukasiList(),
+              ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            const CardEdukasiList(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

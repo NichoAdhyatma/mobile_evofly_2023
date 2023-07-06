@@ -2,8 +2,9 @@ import 'package:Evofly/app/helper/evo_snackbar.dart';
 import 'package:Evofly/app/services/base_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthService extends BaseService {
+import '../modules/auth/models/user.dart';
 
+class AuthService extends BaseService {
   Future<void> register(String name, String email, String password) async {
     try {
       final UserCredential credential =
@@ -12,15 +13,8 @@ class AuthService extends BaseService {
         password: password,
       );
       storeUser(name, credential);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        showErrorSnackbar(
-            title: "Pesan Error", message: "Password terlalu lemah");
-      } else if (e.code == 'email-already-in-use') {
-        showErrorSnackbar(title: "Pesan Error", message: "Email sudah dipakai");
-      }
     } catch (e) {
-      showErrorSnackbar(title: "Pesan Error", message: e.toString());
+      handleFirebaseAuthError(e);
     }
   }
 
@@ -28,14 +22,26 @@ class AuthService extends BaseService {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
+    } catch (e) {
+      handleFirebaseAuthError(e);
+    }
+  }
+
+  void handleFirebaseAuthError(dynamic error) {
+    if (error is FirebaseAuthException) {
+      final code = error.code;
+      if (code == 'weak-password') {
+        showErrorSnackbar(
+            title: "Pesan Error", message: "Password terlalu lemah");
+      } else if (code == 'email-already-in-use') {
+        showErrorSnackbar(title: "Pesan Error", message: "Email sudah dipakai");
+      } else {
         showErrorSnackbar(
             title: "Pesan Error",
-            message: "Data Yang Kamu Masukan Tidak Valid");
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+            message: "Data yang Anda masukkan tidak valid");
       }
+    } else {
+      showErrorSnackbar(title: "Pesan Error", message: "Terjadi kesalahan");
     }
   }
 
@@ -43,13 +49,15 @@ class AuthService extends BaseService {
     await firebaseAuth.signOut();
   }
 
-  Future<Map<String, dynamic>?> getUserData() async {
-    var user = await firestore
-        .collection('users')
-        .doc(firebaseAuth.currentUser?.uid)
-        .get();
+  Future<UserModel> getUserData() async {
+    return handleFirestoreError(() async {
+      var user = await firestore
+          .collection('users')
+          .doc(firebaseAuth.currentUser?.uid)
+          .get();
 
-    return user.data();
+      return UserModel.fromJson(user.data()!);
+    });
   }
 
   Future<void> storeUser(String name, UserCredential credential) async {

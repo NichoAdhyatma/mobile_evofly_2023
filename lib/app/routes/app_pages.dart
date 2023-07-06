@@ -4,6 +4,8 @@ import '../modules/auth/login/bindings/login_binding.dart';
 import '../modules/auth/login/views/login_view.dart';
 import '../modules/auth/register/bindings/register_binding.dart';
 import '../modules/auth/register/views/register_view.dart';
+import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/views/chat_view.dart';
 import '../modules/edukasi/artikel/bindings/artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/bindings/detail_artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/views/detail_artikel_view.dart';
@@ -37,6 +39,10 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDUKASI,
@@ -140,6 +146,11 @@ class AppPages {
     GetPage(
       name: _Paths.HISTORY,
       page: () => const HistoryView(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatView(),
+      binding: ChatBinding(),
     ),
   ];
 }

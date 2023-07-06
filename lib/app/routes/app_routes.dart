@@ -20,6 +20,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const MIDDLEWARE = _Paths.MIDDLEWARE;
   static const HISTORY = _Paths.HISTORY;
+  static const CHAT = _Paths.CHAT;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const MIDDLEWARE = '/middleware';
   static const HISTORY = '/history';
+  static const CHAT = '/chat';
 }

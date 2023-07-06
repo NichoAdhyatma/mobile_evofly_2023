@@ -11,18 +11,15 @@ class ConnectionState extends GetxController {
   }
 
   void connectionStream() {
-    Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) async {
-      if (result == ConnectivityResult.none) {
-        showErrorSnackbar(
-            title: "Koneksi internet tidak ada",
-            message: "Koneksi Internet hilang");
-      } else {
-        showSuccessSnackbar(
-            title: "Terhubung ke interenet", message: "Kembali Online");
-      }
-    });
+    Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult result) async {
+        if (result == ConnectivityResult.none) {
+          showErrorSnackbar(
+              title: "Koneksi internet tidak ada",
+              message: "Koneksi Internet hilang");
+        }
+      },
+    );
   }
 
   Future<bool> isConnected() async {

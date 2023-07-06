@@ -10,7 +10,6 @@ class WebinarController extends GetxController {
     webinars.clear();
     WebinarService().getWebinar().then((webinarList) {
       webinars.addAll(webinarList);
-      update();
     });
   }
 }

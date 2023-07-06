@@ -15,28 +15,27 @@ class HomeView extends GetView<HomeController> {
       body: ListView(
         children: const [
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 36,
-              vertical: 40,
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                EvoSearchBar(),
+
+                SizedBox(
+                  height: 30,
+                ),
+                //card
+                HomeCardList(),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                UmkmCard(),
+              ],
             ),
-            child: EvoSearchBar(),
-          ),
-          //card
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: HomeCardList(),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: UmkmCard(),
-          ),
+          )
         ],
       ),
     );
   }
 }
-
-

@@ -2,7 +2,8 @@ import 'package:Evofly/app/widgets/content_card.dart';
 import 'package:flutter/material.dart';
 
 class ContentList extends StatelessWidget {
-  const ContentList({Key? key, required this.data, required this.routes}) : super(key: key);
+  const ContentList({Key? key, required this.data, required this.routes})
+      : super(key: key);
 
   final List<dynamic> data;
   final String routes;
@@ -12,8 +13,15 @@ class ContentList extends StatelessWidget {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (BuildContext context, int index) {
-         var item = data[index];
-         return ContentCard(item: item, routes: routes);
+        var item = data[index];
+        return Padding(
+          padding: const EdgeInsets.only(
+            top: 12,
+            left: 12,
+            right: 12,
+          ),
+          child: ContentCard(item: item, routes: routes),
+        );
       },
     );
   }

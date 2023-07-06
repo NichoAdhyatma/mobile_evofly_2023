@@ -11,12 +11,15 @@ class MiddlewareView extends GetView<MiddlewareController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MiddlewareController>(
-      initState: (_) => controller.authStateChange(),
-      builder: (MiddlewareController controller) =>
-          LoadingAnimationWidget.dotsTriangle(
-        color: BaseTheme.secondaryColor,
-        size: 50,
+    return Scaffold(
+      body: GetBuilder<MiddlewareController>(
+        initState: (_) => controller.authStateChange(),
+        builder: (MiddlewareController controller) => Center(
+          child: LoadingAnimationWidget.dotsTriangle(
+            color: BaseTheme.secondaryColor,
+            size: 50,
+          ),
+        ),
       ),
     );
   }

@@ -12,7 +12,7 @@ class VideoController extends GetxController {
     videoService.getVideo().then(
       (videoList) {
         videos.addAll(videoList);
-        update();
+
       },
     );
   }
