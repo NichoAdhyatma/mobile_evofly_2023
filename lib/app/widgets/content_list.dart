@@ -10,19 +10,21 @@ class ContentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (BuildContext context, int index) {
-        var item = data[index];
-        return Padding(
-          padding: const EdgeInsets.only(
-            top: 12,
-            left: 12,
-            right: 12,
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (BuildContext context, int index) {
+                var item = data[index];
+                return ContentCard(item: item, routes: routes);
+              },
+            ),
           ),
-          child: ContentCard(item: item, routes: routes),
-        );
-      },
+        ),
+      ],
     );
   }
 }

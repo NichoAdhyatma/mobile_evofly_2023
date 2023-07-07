@@ -5,6 +5,8 @@ import '../modules/auth/login/views/login_view.dart';
 import '../modules/auth/register/bindings/register_binding.dart';
 import '../modules/auth/register/views/register_view.dart';
 import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/room/bindings/room_binding.dart';
+import '../modules/chat/room/views/room_view.dart';
 import '../modules/chat/views/chat_view.dart';
 import '../modules/edukasi/artikel/bindings/artikel_binding.dart';
 import '../modules/edukasi/artikel/detail_artikel/bindings/detail_artikel_binding.dart';
@@ -39,7 +41,6 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
-
     ),
     GetPage(
       name: _Paths.EDUKASI,
@@ -156,6 +157,21 @@ class AppPages {
       name: _Paths.CHAT,
       page: () => const ChatView(),
       binding: ChatBinding(),
+      transitionDuration: const Duration(
+        milliseconds: 330,
+      ),
+      transition: Transition.cupertino,
+      children: [
+        GetPage(
+          name: _Paths.ROOM,
+          page: () => const RoomView(),
+          binding: RoomBinding(),
+          transitionDuration: const Duration(
+            milliseconds: 330,
+          ),
+          transition: Transition.cupertino,
+        ),
+      ],
     ),
   ];
 }

@@ -21,6 +21,11 @@ abstract class BaseTheme {
     ),
   );
 
+  static const normalText = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: shadowColor,
+  );
+
   static const mediumText = TextStyle(
     fontWeight: FontWeight.w500,
     color: shadowColor,

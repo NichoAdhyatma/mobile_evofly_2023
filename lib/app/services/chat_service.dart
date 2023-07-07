@@ -4,7 +4,7 @@ import 'package:Evofly/app/services/base_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatService extends BaseService {
-  Future<Stream<List<UserModel>>> getMentorStream() async {
+  Future<Stream<List<UserModel>>> getListUserStream() async {
     var userData = await AuthService().getUserData();
     Stream<QuerySnapshot<Map<String, dynamic>>> queryStream;
 
@@ -29,5 +29,11 @@ class ChatService extends BaseService {
         return stream;
       },
     );
+  }
+
+  Future<Stream<UserModel>> getUserStream(String uid) async {
+    var queryStream = firestore.collection("users").doc(uid).snapshots();
+
+    return queryStream.map((snapshot) => UserModel.fromJson(snapshot));
   }
 }
