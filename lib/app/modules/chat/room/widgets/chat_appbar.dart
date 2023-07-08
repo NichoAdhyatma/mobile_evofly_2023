@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../themes/base_theme.dart';
-import '../controllers/room_controller.dart';
 
-AppBar buildChatAppbar(RoomController controller) {
+AppBar buildChatAppbar({required String name, required String status}) {
   return AppBar(
     leading: IconButton(
       onPressed: () => Get.back(),
@@ -17,13 +16,13 @@ AppBar buildChatAppbar(RoomController controller) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          controller.partner.value.name,
+          name,
           style: BaseTheme.normalText.copyWith(
             fontSize: 14,
           ),
         ),
         Text(
-          controller.partner.value.status,
+          status,
           style: BaseTheme.secondaryText.copyWith(
             fontSize: 12,
           ),

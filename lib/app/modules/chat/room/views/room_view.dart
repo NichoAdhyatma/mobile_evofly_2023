@@ -15,11 +15,16 @@ class RoomView extends GetView<RoomController> {
     return GetX<RoomController>(
       initState: (_) => controller.initStream(),
       builder: (RoomController controller) => Scaffold(
-        appBar: buildChatAppbar(controller),
-        body: const Column(
+        appBar: buildChatAppbar(
+          name: controller.partner.value.name,
+          status: controller.partner.value.status,
+        ),
+        body: Column(
           children: [
-            ListChat(),
-            SendMessage(),
+            ListChat(
+              messageList: controller.messageList,
+            ),
+            const SendMessage(),
           ],
         ),
       ),

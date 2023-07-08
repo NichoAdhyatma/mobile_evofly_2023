@@ -26,7 +26,6 @@ class RoomController extends GetxController {
   void fetchMessageStream() async {
     var streamMessage = await ChatService().getMessageStream(partner.value.uid);
     streamMessage.listen((messageList) {
-      print(messageList[messageList.length - 1].timestamp);
       this.messageList.assignAll(messageList);
     });
   }
