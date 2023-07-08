@@ -22,6 +22,8 @@ class AuthService extends BaseService {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+
+      updateStatusUser("online");
     } catch (e) {
       handleFirebaseAuthError(e);
     }
@@ -46,7 +48,10 @@ class AuthService extends BaseService {
   }
 
   Future<void> signOut() async {
-    await firebaseAuth.signOut();
+    handleFirestoreError(() async {
+      updateStatusUser("offline");
+      firebaseAuth.signOut();
+    });
   }
 
   Future<UserModel> getUserData() async {
@@ -68,5 +73,12 @@ class AuthService extends BaseService {
       'status': 'offline',
       'isMentor': false,
     });
+  }
+
+  Future<void> updateStatusUser(String status) async {
+    await firestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser?.uid)
+        .update({'status': status});
   }
 }
