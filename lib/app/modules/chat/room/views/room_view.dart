@@ -22,6 +22,7 @@ class RoomView extends GetView<RoomController> {
         body: Column(
           children: [
             ListChat(
+              scrollController: controller.scrollController,
               messageList: controller.messageList,
             ),
             const SendMessage(),

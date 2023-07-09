@@ -49,8 +49,7 @@ class AuthService extends BaseService {
 
   Future<void> signOut() async {
     handleFirestoreError(() async {
-      updateStatusUser("offline");
-      firebaseAuth.signOut();
+      updateStatusUser("offline").then((_) => firebaseAuth.signOut());
     });
   }
 

@@ -44,12 +44,20 @@ class ChatService extends BaseService {
 
   Future<Stream<List<MessageModel>>> getMessageStream(String id) {
     return handleFirestoreError(() async {
-      var queryStream = firestore
+      var userData = await AuthService().getUserData();
+
+      DocumentReference<Map<String, dynamic>> roomDoc = firestore
           .collection('rooms')
-          .doc('${firebaseAuth.currentUser?.uid}$id')
-          .collection('messages')
-          .orderBy('timestamp')
-          .snapshots();
+          .doc(!userData.isMentor
+              ? '${firebaseAuth.currentUser?.uid}$id'
+              : '$id${firebaseAuth.currentUser?.uid}');
+
+      roomDoc.set({
+        'mentor_id': id,
+      });
+
+      var queryStream =
+          roomDoc.collection('messages').orderBy('timestamp').snapshots();
       var stream = queryStream.map(
         (snapshot) =>
             snapshot.docs.map((doc) => MessageModel.fromJson(doc)).toList(),
