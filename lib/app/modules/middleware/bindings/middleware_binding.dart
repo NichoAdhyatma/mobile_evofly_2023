@@ -1,3 +1,4 @@
+import 'package:Evofly/app/helper/notif.dart';
 import 'package:get/get.dart';
 
 import '../../../helper/connection_state.dart';
@@ -8,5 +9,6 @@ class MiddlewareBinding extends Bindings {
   void dependencies() {
     Get.put(MiddlewareController(), permanent: true);
     Get.put(ConnectionState(), permanent: true);
+    Get.put(Notif(), permanent: true);
   }
 }

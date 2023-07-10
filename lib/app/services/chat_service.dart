@@ -4,6 +4,7 @@ import 'package:Evofly/app/modules/middleware/controllers/middleware_controller.
 import 'package:Evofly/app/services/base_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class ChatService extends BaseService {
   var isMentor = Get.find<MiddlewareController>().userModel!.isMentor;
@@ -86,6 +87,7 @@ class ChatService extends BaseService {
               : '${firebaseAuth.currentUser?.uid}$id')
           .collection('messages')
           .add({
+        'id': const Uuid().v4(),
         'message': message,
         'sendBy': firebaseAuth.currentUser?.uid,
         'timestamp': FieldValue.serverTimestamp(),

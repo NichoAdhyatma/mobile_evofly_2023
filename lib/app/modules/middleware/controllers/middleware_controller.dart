@@ -17,7 +17,7 @@ class MiddlewareController extends GetxController {
         } else {
           userModel = await AuthService().getUserData();
           showSuccessSnackbar(
-            title: "Anda telah Masuk ${userModel?.isMentor}",
+            title: "Anda telah Masuk ${userModel?.name}",
             message: "Selamat Datang di Evofly",
           );
           Get.offAllNamed(Routes.LAYOUT);
