@@ -7,7 +7,7 @@ class VideoService extends BaseService {
       () async {
         final querySnapshot = await firestore.collection('video').get();
         return querySnapshot.docs
-            .map((doc) => VideoModel.fromJson(doc))
+            .map((doc) => VideoModel.fromJson(doc.data()))
             .toList();
       },
     );

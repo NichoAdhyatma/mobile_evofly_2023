@@ -8,7 +8,7 @@ class ArtikelService extends BaseService {
         final querySnapshot = await firestore.collection("artikel").get();
 
         return querySnapshot.docs
-            .map((doc) => ArtikelModel.fromJson(doc))
+            .map((doc) => ArtikelModel.fromJson(doc.data()))
             .toList();
       },
     );

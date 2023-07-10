@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../themes/base_theme.dart';
+import '../../../middleware/controllers/middleware_controller.dart';
 import '../models/message_model.dart';
 
-class ChatBubble extends StatelessWidget {
+class ChatBubble extends GetView<MiddlewareController> {
   const ChatBubble({
     super.key,
     required this.message,
@@ -21,7 +22,7 @@ class ChatBubble extends StatelessWidget {
         vertical: 4.0,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: message.sendBy == controller.userModel?.uid ?  MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
@@ -29,7 +30,7 @@ class ChatBubble extends StatelessWidget {
               horizontal: 10,
             ),
             decoration: BoxDecoration(
-              color: BaseTheme.secondaryColor,
+              color: message.sendBy == controller.userModel?.uid ? BaseTheme.secondaryColor : BaseTheme.primaryColor,
               borderRadius: BorderRadius.circular(15),
             ),
             constraints: BoxConstraints(
@@ -44,7 +45,7 @@ class ChatBubble extends StatelessWidget {
                   child: Text(
                     message.message,
                     style: BaseTheme.mediumText.copyWith(
-                      color: BaseTheme.whiteColor,
+                      color: message.sendBy == controller.userModel?.uid ? BaseTheme.whiteColor : BaseTheme.shadowColor,
                     ),
                   ),
                 ),

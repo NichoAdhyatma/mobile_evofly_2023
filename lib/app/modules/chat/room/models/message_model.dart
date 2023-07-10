@@ -5,7 +5,7 @@ class MessageModel {
   String sendBy;
   DateTime timestamp;
 
-  MessageModel.fromJson(dynamic json)
+  MessageModel.fromJson(Map<String, dynamic> json)
       : message = json['message'],
         sendBy = json['sendBy'],
         timestamp = json['timestamp'] != null

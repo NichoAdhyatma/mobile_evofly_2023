@@ -5,7 +5,7 @@ class UserModel {
   String status;
   bool isMentor;
 
-  UserModel.fromJson(dynamic json)
+  UserModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
         name = json['name'],
         email = json['email'],

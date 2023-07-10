@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class VideoModel {
   final String title;
   final String videoId;
@@ -7,7 +5,7 @@ class VideoModel {
 
   VideoModel(this.title, this.videoId, this.imageUrl);
 
-  VideoModel.fromJson(QueryDocumentSnapshot<Object?> doc)
+  VideoModel.fromJson(Map<String, dynamic> doc)
       : title = doc['title'],
         videoId = doc['video_id'],
         imageUrl = doc['imageUrl'];

@@ -12,8 +12,10 @@ class MessageTextField extends GetView<RoomController> {
     return TextField(
       focusNode: controller.messageFocus,
       controller: controller.messageController,
+      onTap: controller.scrollToEnd,
       textInputAction: TextInputAction.newline,
       decoration: InputDecoration(
+        hintText: "Tulis Pesan Disini",
         counter: const Offstage(),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),

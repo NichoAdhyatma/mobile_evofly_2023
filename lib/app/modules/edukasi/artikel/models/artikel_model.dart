@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class ArtikelModel {
   final String title;
   final List<String> body;
@@ -7,7 +5,7 @@ class ArtikelModel {
 
   ArtikelModel(this.title, this.body, this.imageUrl);
 
-  ArtikelModel.fromJson(QueryDocumentSnapshot<Object?> doc)
+  ArtikelModel.fromJson(Map<String, dynamic> doc)
       : title = doc['title'],
         body = List<String>.from(doc['body']),
         imageUrl = doc['imageUrl'];

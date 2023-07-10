@@ -1,20 +1,29 @@
 import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/modules/chat/room/models/message_model.dart';
-import 'package:Evofly/app/services/auth_service.dart';
+import 'package:Evofly/app/modules/middleware/controllers/middleware_controller.dart';
 import 'package:Evofly/app/services/base_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 class ChatService extends BaseService {
-  Future<Stream<List<UserModel>>> getListUserStream() async {
-    var userData = await AuthService().getUserData();
-    Stream<QuerySnapshot<Map<String, dynamic>>> queryStream;
+  var isMentor = Get.find<MiddlewareController>().userModel!.isMentor;
 
+  Future<Stream<List<UserModel>>> getListUserStream() async {
     return handleFirestoreError(
       () async {
-        if (userData.isMentor) {
+        Stream<QuerySnapshot<Map<String, dynamic>>> queryStream;
+        var roomDoc = await firestore
+            .collection('rooms')
+            .where('mentor_id', isEqualTo: firebaseAuth.currentUser?.uid)
+            .get();
+
+        var listUid =
+            roomDoc.docs.map((doc) => doc.data()['user_id'] as String).toList();
+
+        if (isMentor) {
           queryStream = firestore
               .collection("users")
-              .where("isMentor", isEqualTo: false)
+              .where("uid", whereIn: listUid)
               .snapshots();
         } else {
           queryStream = firestore
@@ -22,56 +31,59 @@ class ChatService extends BaseService {
               .where("isMentor", isEqualTo: true)
               .snapshots();
         }
-        var stream = queryStream.map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => UserModel.fromJson(doc)).toList(),
+        return queryStream.map(
+          (snapshot) => snapshot.docs
+              .map((doc) => UserModel.fromJson(doc.data()))
+              .toList(),
         );
-
-        return stream;
       },
     );
   }
 
   Future<Stream<UserModel>> getUserStream(String uid) async {
-    return handleFirestoreError(() async {
-      var queryStream = firestore.collection("users").doc(uid).snapshots();
-      var userModel =
-          queryStream.map((snapshot) => UserModel.fromJson(snapshot));
+    return handleFirestoreError(
+      () async {
+        var queryStream = firestore.collection("users").doc(uid).snapshots();
 
-      return userModel;
-    });
+        return queryStream
+            .map((snapshot) => UserModel.fromJson(snapshot.data()!));
+      },
+    );
   }
 
   Future<Stream<List<MessageModel>>> getMessageStream(String id) {
-    return handleFirestoreError(() async {
-      var userData = await AuthService().getUserData();
+    return handleFirestoreError(
+      () async {
+        DocumentReference<Map<String, dynamic>> roomDoc = firestore
+            .collection('rooms')
+            .doc(isMentor
+                ? '$id${firebaseAuth.currentUser?.uid}'
+                : '${firebaseAuth.currentUser?.uid}$id');
 
-      DocumentReference<Map<String, dynamic>> roomDoc = firestore
-          .collection('rooms')
-          .doc(!userData.isMentor
-              ? '${firebaseAuth.currentUser?.uid}$id'
-              : '$id${firebaseAuth.currentUser?.uid}');
+        isMentor
+            ? roomDoc.set(
+                {'mentor_id': firebaseAuth.currentUser?.uid, 'user_id': id})
+            : roomDoc.set(
+                {'mentor_id': id, 'user_id': firebaseAuth.currentUser?.uid});
 
-      roomDoc.set({
-        'mentor_id': id,
-      });
-
-      var queryStream =
-          roomDoc.collection('messages').orderBy('timestamp').snapshots();
-      var stream = queryStream.map(
-        (snapshot) =>
-            snapshot.docs.map((doc) => MessageModel.fromJson(doc)).toList(),
-      );
-
-      return stream;
-    });
+        var queryStream =
+            roomDoc.collection('messages').orderBy('timestamp').snapshots();
+        return queryStream.map(
+          (snapshot) => snapshot.docs
+              .map((doc) => MessageModel.fromJson(doc.data()))
+              .toList(),
+        );
+      },
+    );
   }
 
   Future<void> sendMessage(String id, String message) async {
     handleFirestoreError(() async {
       await firestore
           .collection('rooms')
-          .doc('${firebaseAuth.currentUser!.uid}$id')
+          .doc(isMentor
+              ? '$id${firebaseAuth.currentUser?.uid}'
+              : '${firebaseAuth.currentUser?.uid}$id')
           .collection('messages')
           .add({
         'message': message,
