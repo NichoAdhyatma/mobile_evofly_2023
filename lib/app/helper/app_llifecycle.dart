@@ -21,7 +21,6 @@ class AppLifeCycleController extends FullLifeCycleController with FullLifeCycleM
 
   @override
   void onResumed() {
-    // Called when the app is resumed
     authService.updateStatusUser('online');
   }
 }

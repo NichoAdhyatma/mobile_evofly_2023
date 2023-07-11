@@ -1,5 +1,7 @@
+import 'package:Evofly/app/helper/notif.dart';
 import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/services/auth_service.dart';
+import 'package:Evofly/app/services/base_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +18,7 @@ class MiddlewareController extends GetxController {
           Get.offAllNamed(Routes.LOGIN);
         } else {
           var streamUser = await AuthService().getAuthUserStrem();
-          userModel = await AuthService().getUserData();
+          userModel = await AuthService().getUserData(null);
 
           streamUser.listen(
             (user) {
@@ -28,6 +30,8 @@ class MiddlewareController extends GetxController {
             title: "Anda telah Masuk ${userModel?.name}",
             message: "Selamat Datang di Evofly",
           );
+
+          Notif.getStreamNotif();
 
           Get.offAllNamed(Routes.LAYOUT);
         }

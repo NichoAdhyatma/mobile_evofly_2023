@@ -12,7 +12,7 @@ class ProfileController extends GetxController {
   }
 
   Future<void> fetchUser() async {
-    UserModel userModel = await AuthService().getUserData();
+    UserModel userModel = await AuthService().getUserData(null);
     nameController.text = userModel.name;
     emailController.text = userModel.email;
   }

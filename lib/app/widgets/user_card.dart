@@ -43,9 +43,6 @@ class UserCard extends GetView<ChatController> {
                       style: BaseTheme.mediumText
                           .copyWith(color: Colors.grey[500]),
                     ),
-              Obx(() => controller.lastMessage.isEmpty
-                  ? const Text("Mulai Chat")
-                  : Text(controller.lastMessage[index])),
             ],
           ),
           tileColor: BaseTheme.whiteColor,

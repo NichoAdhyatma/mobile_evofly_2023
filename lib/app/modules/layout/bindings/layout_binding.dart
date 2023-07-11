@@ -3,6 +3,7 @@ import 'package:Evofly/app/modules/home/controllers/home_controller.dart';
 import 'package:Evofly/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
 
+import '../../../helper/app_llifecycle.dart';
 import '../controllers/layout_controller.dart';
 
 class LayoutBinding extends Bindings {
@@ -15,5 +16,6 @@ class LayoutBinding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<HistoryController>(() => HistoryController());
+    Get.put(AppLifeCycleController(), permanent: true);
   }
 }

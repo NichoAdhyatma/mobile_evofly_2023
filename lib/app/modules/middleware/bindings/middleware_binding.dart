@@ -1,4 +1,3 @@
-import 'package:Evofly/app/helper/app_llifecycle.dart';
 import 'package:Evofly/app/helper/notif.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +10,5 @@ class MiddlewareBinding extends Bindings {
     Get.put(MiddlewareController(), permanent: true);
     Get.put(ConnectionState(), permanent: true);
     Get.put(Notif(), permanent: true);
-    Get.put(AppLifeCycleController(), permanent: true);
   }
 }

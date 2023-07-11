@@ -6,8 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class ChatService extends BaseService {
-  var isMentor = Get.find<MiddlewareController>().userModel!.isMentor;
-
+  var isMentor = Get.find<MiddlewareController>().userModel?.isMentor;
 
   Future<Stream<List<UserModel>>?> getListUserStream() async {
     return handleFirestoreError(
@@ -15,7 +14,7 @@ class ChatService extends BaseService {
         Stream<QuerySnapshot<Map<String, dynamic>>> queryStream;
         var userDoc = firestore.collection("users");
 
-        if (isMentor) {
+        if (isMentor!) {
           var roomDoc = await firestore
               .collection('rooms')
               .where('mentor_id', isEqualTo: firebaseAuth.currentUser?.uid)
@@ -53,12 +52,25 @@ class ChatService extends BaseService {
     );
   }
 
+  Future<Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>>>
+      getNotifStream() {
+    return handleFirestoreError(() async {
+      Stream<QuerySnapshot<Map<String, dynamic>>> queryStream = firestore
+          .collection('rooms')
+          .where(isMentor! ? 'mentor_id' : 'user_id',
+              isEqualTo: firebaseAuth.currentUser?.uid)
+          .snapshots();
+
+      return queryStream.map((snap) => snap.docs.map((e) => e).toList());
+    });
+  }
+
   Future<Stream<List<MessageModel>>> getMessageStream(String id) {
     return handleFirestoreError(
       () async {
         DocumentReference<Map<String, dynamic>> roomDoc = firestore
             .collection('rooms')
-            .doc(isMentor
+            .doc(isMentor!
                 ? '$id${firebaseAuth.currentUser?.uid}'
                 : '${firebaseAuth.currentUser?.uid}$id');
 
@@ -73,16 +85,9 @@ class ChatService extends BaseService {
     );
   }
 
-  Future<void> updateNoitfy(String id, String chatId) {
+  Future<void> updateNoitfy(String id) {
     return handleFirestoreError(() async {
-      DocumentReference<Map<String, dynamic>> roomDoc = firestore
-          .collection('rooms')
-          .doc(isMentor
-              ? '$id${firebaseAuth.currentUser?.uid}'
-              : '${firebaseAuth.currentUser?.uid}$id')
-          .collection("messages")
-          .doc(chatId);
-
+      var roomDoc = firestore.collection('rooms').doc(id);
       return roomDoc.update({
         'notify': true,
       });
@@ -94,7 +99,7 @@ class ChatService extends BaseService {
       () async {
         Stream<QuerySnapshot<Map<String, dynamic>>> queryStream = firestore
             .collection('rooms')
-            .where(isMentor ? 'mentor_id' : 'user_id',
+            .where(isMentor! ? 'mentor_id' : 'user_id',
                 isEqualTo: firebaseAuth.currentUser?.uid)
             .snapshots();
 
@@ -113,21 +118,25 @@ class ChatService extends BaseService {
   Future<void> sendMessage(String id, String message) async {
     handleFirestoreError(
       () async {
-        var roomRef = firestore.collection('rooms').doc(isMentor
+        var roomRef = firestore.collection('rooms').doc(isMentor!
             ? '$id${firebaseAuth.currentUser?.uid}'
             : '${firebaseAuth.currentUser?.uid}$id');
 
-        isMentor
+        isMentor!
             ? roomRef.set({
                 'mentor_id': firebaseAuth.currentUser?.uid,
                 'user_id': id,
-                'last_message': message
+                'last_message': message,
+                'send_by': firebaseAuth.currentUser?.uid,
+                'notify': false,
               })
             : roomRef.set(
                 {
                   'mentor_id': id,
                   'user_id': firebaseAuth.currentUser?.uid,
                   'last_message': message,
+                  'send_by': firebaseAuth.currentUser?.uid,
+                  'notify': false,
                 },
               );
 
@@ -139,7 +148,6 @@ class ChatService extends BaseService {
           'message': message,
           'sendBy': firebaseAuth.currentUser?.uid,
           'timestamp': FieldValue.serverTimestamp(),
-          'notify': false,
         };
 
         await newMessageRef.set(newMessageData);

@@ -54,11 +54,11 @@ class AuthService extends BaseService {
     });
   }
 
-  Future<UserModel> getUserData() async {
+  Future<UserModel> getUserData(String? id) async {
     return handleFirestoreError(() async {
       var user = await firestore
           .collection('users')
-          .doc(firebaseAuth.currentUser?.uid)
+          .doc(id ?? firebaseAuth.currentUser?.uid)
           .get();
 
       return UserModel.fromJson(user.data()!);
