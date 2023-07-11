@@ -28,7 +28,7 @@ class CardEdukasiList extends StatelessWidget {
         GestureDetector(
           onTap: () => Get.toNamed(Routes.VIDEO),
           child: const EdukasiCard(
-            desc: "Panduan, inspirasi, dan jugastrategi "
+            desc: "Panduan, inspirasi, dan juga strategi "
                 "untuk mengembangkan "
                 "usaha Anda",
             icon: FontAwesomeIcons.youtube,

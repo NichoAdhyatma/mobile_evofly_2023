@@ -15,8 +15,8 @@ class ChatView extends GetView<ChatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(title: "Chat Mentor"),
-      body: GetX(
-        initState: (_) => controller.fetchMentorStream(),
+      body: GetX<ChatController>(
+        initState: (_) => controller.initStream(),
         builder: (ChatController controller) => controller.isLoading.value
             ? const SkeletonCardList(
                 count: 6,
@@ -25,7 +25,11 @@ class ChatView extends GetView<ChatController> {
                 itemCount: controller.mentor.length,
                 itemBuilder: (BuildContext context, int index) {
                   var mentor = controller.mentor[index];
-                  return UserCard(mentor: mentor);
+
+                  return UserCard(
+                    mentor: mentor,
+                    index: index,
+                  );
                 },
               ),
       ),

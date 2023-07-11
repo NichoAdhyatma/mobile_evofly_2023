@@ -44,15 +44,22 @@ class RoomController extends GetxController {
 
   void fetchMessageStream() async {
     var streamMessage = await ChatService().getMessageStream(partner.value.uid);
-    streamMessage.listen((messageList) {
+    streamMessage.listen((messageList) async {
       this.messageList.assignAll(messageList);
-      if (messageList.last.sendBy !=
-          BaseService().firebaseAuth.currentUser?.uid) {
+      if (messageList.isNotEmpty &&
+          messageList.last.sendBy !=
+              BaseService().firebaseAuth
+                  .currentUser?.uid &&
+          !messageList.last.notify) {
         Notif.showNotif(
-            title: "Pesan Masuk dari ${partner.value.name}",
-            body: messageList.last.message,
-            id: 0,
-            payload: partner.value.uid);
+          title: "Pesan Masuk dari ${partner.value.name}",
+          body: messageList.last.message,
+          id: Random().nextInt(99999),
+          payload: partner.value.uid,
+        );
+
+        messageList.last.notify = false;
+        await ChatService().updateNoitfy(partner.value.uid, messageList.last.id);
       }
 
       scrollToEnd();

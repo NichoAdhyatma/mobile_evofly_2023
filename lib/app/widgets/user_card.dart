@@ -1,3 +1,4 @@
+import 'package:Evofly/app/modules/chat/controllers/chat_controller.dart';
 import 'package:Evofly/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -5,13 +6,15 @@ import '../modules/auth/models/user.dart';
 import '../themes/base_theme.dart';
 import 'package:get/get.dart';
 
-class UserCard extends StatelessWidget {
+class UserCard extends GetView<ChatController> {
   const UserCard({
     super.key,
     required this.mentor,
+    required this.index,
   });
 
   final UserModel mentor;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +28,25 @@ class UserCard extends StatelessWidget {
             right: 12.0,
           ),
           title: Text(mentor.name),
-          subtitle: mentor.status == 'online'
-              ? Text(
-            mentor.status,
-            style: BaseTheme.mediumText
-                .copyWith(color: Colors.green[500]),
-          )
-              : Text(
-            mentor.status,
-            style: BaseTheme.mediumText
-                .copyWith(color: Colors.grey[500]),
+          subtitle: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              mentor.status == 'online'
+                  ? Text(
+                      mentor.status,
+                      style: BaseTheme.mediumText
+                          .copyWith(color: Colors.green[500]),
+                    )
+                  : Text(
+                      mentor.status,
+                      style: BaseTheme.mediumText
+                          .copyWith(color: Colors.grey[500]),
+                    ),
+              Obx(() => controller.lastMessage.isEmpty
+                  ? const Text("Mulai Chat")
+                  : Text(controller.lastMessage[index])),
+            ],
           ),
           tileColor: BaseTheme.whiteColor,
           shape: RoundedRectangleBorder(

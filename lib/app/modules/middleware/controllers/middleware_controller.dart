@@ -15,11 +15,20 @@ class MiddlewareController extends GetxController {
         if (user == null) {
           Get.offAllNamed(Routes.LOGIN);
         } else {
+          var streamUser = await AuthService().getAuthUserStrem();
           userModel = await AuthService().getUserData();
+
+          streamUser.listen(
+            (user) {
+              userModel = user;
+            },
+          );
+
           showSuccessSnackbar(
             title: "Anda telah Masuk ${userModel?.name}",
             message: "Selamat Datang di Evofly",
           );
+
           Get.offAllNamed(Routes.LAYOUT);
         }
       },

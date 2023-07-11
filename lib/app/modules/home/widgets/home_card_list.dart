@@ -17,7 +17,7 @@ class HomeCardList extends StatelessWidget {
         const Flexible(
           flex: 1,
           child: EvoCard(
-            title: 'Content Creator',
+            title: 'Layanan UMKM',
             imageUrl: 'assets/images/content_creator.png',
           ),
         ),

@@ -7,7 +7,6 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 class Notif extends GetxController {
   @override
   void onInit() {
-    print("init notif");
     initialize();
     super.onInit();
   }

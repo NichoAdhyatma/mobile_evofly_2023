@@ -13,6 +13,7 @@ class AuthService extends BaseService {
         password: password,
       );
       storeUser(name, credential);
+      updateStatusUser("online");
     } catch (e) {
       handleFirebaseAuthError(e);
     }
@@ -79,5 +80,19 @@ class AuthService extends BaseService {
         .collection('users')
         .doc(firebaseAuth.currentUser?.uid)
         .update({'status': status});
+  }
+
+  Future<Stream<UserModel>> getAuthUserStrem() {
+    return handleFirestoreError(() async {
+      var queryStream = firestore
+          .collection('users')
+          .doc(firebaseAuth.currentUser?.uid)
+          .snapshots();
+      var userModel = queryStream.map(
+        (doc) => UserModel.fromJson(doc.data()!),
+      );
+
+      return userModel;
+    });
   }
 }
