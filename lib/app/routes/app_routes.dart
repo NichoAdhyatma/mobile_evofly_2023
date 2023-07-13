@@ -22,6 +22,7 @@ abstract class Routes {
   static const HISTORY = _Paths.HISTORY;
   static const CHAT = _Paths.CHAT;
   static const ROOM = _Paths.CHAT + _Paths.ROOM;
+  static const FORUM = _Paths.FORUM;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const HISTORY = '/history';
   static const CHAT = '/chat';
   static const ROOM = '/room';
+  static const FORUM = '/forum';
 }

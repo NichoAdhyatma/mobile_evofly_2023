@@ -25,4 +25,5 @@ class ConnectionState extends GetxController {
   Future<bool> isConnected() async {
     return await InternetConnectionChecker().hasConnection;
   }
+
 }
