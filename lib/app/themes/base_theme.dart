@@ -11,6 +11,9 @@ abstract class BaseTheme {
   static const whiteColor = Color(0xffFFFFFF);
   static const shadowColor = Color(0xff000000);
   static const grayColor = Color(0xff6C6C6C);
+  static const semidark = Color(0xff2F2F2F);
+  static const greyDark = Color(0xff4E4E4E);
+  static const blueColor = Color(0xff3A5CB4);
 
   //input-border
   static InputBorder inputBorder = OutlineInputBorder(
@@ -28,6 +31,11 @@ abstract class BaseTheme {
 
   static const mediumText = TextStyle(
     fontWeight: FontWeight.w500,
+    color: shadowColor,
+  );
+
+  static const boldText = TextStyle(
+    fontWeight: FontWeight.bold,
     color: shadowColor,
   );
 

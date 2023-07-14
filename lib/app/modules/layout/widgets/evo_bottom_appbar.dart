@@ -35,8 +35,8 @@ class EvoBottomBar extends StatelessWidget {
               title: 'Beranda',
             ),
             TabItem(
-              icon: Icons.history,
-              title: 'Riwayat',
+              icon: Icons.forum_outlined,
+              title: 'Forum',
             ),
             TabItem(
               icon: Icons.person_outline_rounded,

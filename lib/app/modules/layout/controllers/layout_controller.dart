@@ -1,6 +1,6 @@
+import 'package:Evofly/app/modules/forum/views/forum_view.dart';
 import 'package:get/get.dart';
 
-import '../../history/views/history_view.dart';
 import '../../home/views/home_view.dart';
 import '../../profile/views/profile_view.dart';
 
@@ -9,7 +9,7 @@ class LayoutController extends GetxController {
 
   final pages = [
     const HomeView(),
-    const HistoryView(),
+    const ForumView(),
     const ProfileView(),
   ];
 

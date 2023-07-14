@@ -50,6 +50,17 @@ abstract class ThemeConfig {
       border: BaseTheme.inputBorder,
       labelStyle: BaseTheme.mediumText,
     ),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.all<Color>(BaseTheme.blueColor),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      side: const BorderSide(
+        width: 1.0,
+        color: BaseTheme.whiteColor,
+      ),
+    ),
     shadowColor: BaseTheme.shadowColor,
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
