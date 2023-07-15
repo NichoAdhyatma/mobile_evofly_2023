@@ -22,7 +22,6 @@ import '../modules/edukasi/webinar/bindings/webinar_binding.dart';
 import '../modules/edukasi/webinar/detail_webinar/bindings/detail_webinar_binding.dart';
 import '../modules/edukasi/webinar/detail_webinar/views/detail_webinar_view.dart';
 import '../modules/edukasi/webinar/views/webinar_view.dart';
-import '../modules/forum/bindings/forum_binding.dart';
 import '../modules/forum/views/forum_view.dart';
 import '../modules/history/views/history_view.dart';
 import '../modules/home/views/home_view.dart';
@@ -178,7 +177,6 @@ class AppPages {
     GetPage(
       name: _Paths.FORUM,
       page: () => const ForumView(),
-      binding: ForumBinding(),
     ),
   ];
 }

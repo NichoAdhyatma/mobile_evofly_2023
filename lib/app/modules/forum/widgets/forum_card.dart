@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../themes/base_theme.dart';
+import 'label_tag.dart';
 
 class ForumCard extends StatelessWidget {
   const ForumCard({
@@ -18,23 +19,11 @@ class ForumCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 2.0,
-                  ),
-                  decoration: BoxDecoration(
-                    color: BaseTheme.semidark,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    "Social Media",
-                    style: BaseTheme.mediumText.copyWith(
-                      color: BaseTheme.whiteColor,
-                    ),
-                  ),
+                LabelTag(
+                  id: 0,
+                  text: "Sosial Media",
                 ),
               ],
             ),
@@ -105,3 +94,5 @@ class ForumCard extends StatelessWidget {
     );
   }
 }
+
+

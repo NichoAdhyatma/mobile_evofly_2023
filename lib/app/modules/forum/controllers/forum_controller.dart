@@ -1,23 +1,14 @@
 import 'package:get/get.dart';
 
 class ForumController extends GetxController {
-  //TODO: Implement ForumController
+  Rx<int> selectedSort = 0.obs;
+  Rx<int> selectedTag = 0.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  setSelectedSort(int value) {
+    selectedSort.value = value;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  setSelectedTag(int value) {
+    selectedTag.value = value;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
