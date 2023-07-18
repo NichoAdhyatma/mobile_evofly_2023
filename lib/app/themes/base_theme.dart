@@ -43,4 +43,22 @@ abstract class BaseTheme {
     fontWeight: FontWeight.w500,
     color: grayColor,
   );
+
+  static var borderInputSecondary = InputDecoration(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(
+        width: 0,
+        style: BorderStyle.none,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(
+        width: 1.0,
+        style: BorderStyle.solid,
+        color: BaseTheme.shadowColor,
+      ),
+    ),
+  );
 }

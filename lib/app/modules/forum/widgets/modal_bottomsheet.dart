@@ -1,8 +1,9 @@
-import 'package:Evofly/app/modules/forum/widgets/label_tag.dart';
+import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
 import 'package:Evofly/app/modules/forum/widgets/sorting_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../themes/base_theme.dart';
+import 'label_row.dart';
 
 Future<dynamic> buildModalBottomSheet(BuildContext context) {
   return showModalBottomSheet(
@@ -63,25 +64,11 @@ Future<dynamic> buildModalBottomSheet(BuildContext context) {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          LabelTag(id: 1, text: "Social Media"),
-                          LabelTag(id: 2, text: "Inovasi"),
-                          LabelTag(id: 3, text: "Keuangan"),
-                        ],
-                      ),
+                      const labelRow1(),
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          LabelTag(id: 4, text: "Bisnis"),
-                          LabelTag(id: 5, text: "Digital Marketing"),
-                          LabelTag(id: 6, text: "Teknologi"),
-                        ],
-                      ),
+                      const labelRow2(),
                       const SizedBox(
                         height: 30,
                       ),

@@ -1,14 +1,18 @@
+import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
+import 'package:Evofly/app/modules/forum/widgets/label_row.dart';
 import 'package:Evofly/app/themes/base_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NewPostButton extends StatelessWidget {
+class NewPostButton extends GetView<ForumController> {
   const NewPostButton({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    controller.setSelectedTag(0);
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
@@ -45,65 +49,88 @@ class NewPostButton extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
+                    Obx(
+                      () => TextField(
+                        controller: controller.titleController,
+                        onChanged: (_) {
+                          controller.canUpload();
+                        },
+                        decoration: BaseTheme.borderInputSecondary.copyWith(
+                          label: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Text("Judul"),
                           ),
+                          hintText: "Judul Topik tidak boleh kosong",
+                          suffixIcon: controller.titleValue.value
+                              ? const Icon(
+                                  Icons.check_circle_rounded,
+                                  color: Colors.green,
+                                )
+                              : null,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                            color: BaseTheme.shadowColor,
-                          ),
-                        ),
-                        label: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text("Judul"),
-                        ),
-                        hintText: "Judul Topik",
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextField(
-                      minLines: 4,
-                      maxLines: 7,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
+                    Obx(
+                      () => TextField(
+                        minLines: 4,
+                        maxLines: 7,
+                        controller: controller.contentController,
+                        onChanged: (_) {
+                          controller.canUpload();
+                        },
+                        decoration: BaseTheme.borderInputSecondary.copyWith(
+                            label: Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Text("Isi"),
+                            ),
+                            hintText: "Isi Topik tidak boleh kosong",
+                            suffixIcon: controller.contentValue.value
+                                ? const Icon(
+                                    Icons.check_circle_rounded,
+                                    color: Colors.green,
+                                  )
+                                : null),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      "Pilih Tag",
+                      style: BaseTheme.mediumText,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const labelRow1(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const labelRow2(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: Get.width,
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: controller.isUpload.value &&
+                                  controller.selectedTag.value != 0
+                              ? () {}
+                              : null,
+                          child: const Text("Upload Topik"),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                            color: BaseTheme.shadowColor,
-                          ),
-                        ),
-                        label: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text("Isi"),
-                        ),
-                        hintText: "Isi Topik",
                       ),
                     ),
                   ],
@@ -111,7 +138,15 @@ class NewPostButton extends StatelessWidget {
               )
             ],
           ),
-        );
+        ).whenComplete(() {
+          controller.titleController.clear();
+          controller.contentController.clear();
+
+          controller.contentValue.value = false;
+          controller.titleValue.value = false;
+
+          controller.setSelectedTag(0);
+        });
       },
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.end,

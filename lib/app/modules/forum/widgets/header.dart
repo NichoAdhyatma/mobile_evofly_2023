@@ -1,9 +1,11 @@
+import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../themes/base_theme.dart';
 import 'modal_bottomsheet.dart';
 
-class Header extends StatelessWidget {
+class Header extends GetView<ForumController> {
   const Header({
     super.key,
   });
@@ -25,7 +27,9 @@ class Header extends StatelessWidget {
             backgroundColor: BaseTheme.semidark,
           ),
           onPressed: () {
-            buildModalBottomSheet(context);
+            buildModalBottomSheet(context).whenComplete(
+              () => controller.setSelectedTag(0),
+            );
           },
           child: Row(
             children: [
