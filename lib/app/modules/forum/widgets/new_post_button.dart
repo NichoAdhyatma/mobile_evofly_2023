@@ -55,6 +55,7 @@ class NewPostButton extends GetView<ForumController> {
                         onChanged: (_) {
                           controller.canUpload();
                         },
+                        focusNode: controller.titleFocus,
                         decoration: BaseTheme.borderInputSecondary.copyWith(
                           label: Container(
                             padding: const EdgeInsets.all(8.0),
@@ -81,6 +82,7 @@ class NewPostButton extends GetView<ForumController> {
                       () => TextField(
                         minLines: 4,
                         maxLines: 7,
+                        focusNode: controller.contentFocus,
                         controller: controller.contentController,
                         onChanged: (_) {
                           controller.canUpload();
@@ -127,7 +129,10 @@ class NewPostButton extends GetView<ForumController> {
                         () => ElevatedButton(
                           onPressed: controller.isUpload.value &&
                                   controller.selectedTag.value != 0
-                              ? () {}
+                              ? () {
+                                  controller.addForum();
+
+                                }
                               : null,
                           child: const Text("Upload Topik"),
                         ),

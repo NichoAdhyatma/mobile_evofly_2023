@@ -1,5 +1,8 @@
+import 'package:Evofly/app/services/forum_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../helper/evo_snackbar.dart';
 
 class ForumController extends GetxController {
   Rx<int> selectedSort = 0.obs;
@@ -10,6 +13,9 @@ class ForumController extends GetxController {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+
+  FocusNode titleFocus = FocusNode();
+  FocusNode contentFocus = FocusNode();
 
   void isTitleEmpty() {
     titleController.text.trim().isNotEmpty
@@ -22,7 +28,6 @@ class ForumController extends GetxController {
         ? contentValue.value = true
         : contentValue.value = false;
   }
-
 
   void canUpload() {
     isTitleEmpty();
@@ -39,5 +44,24 @@ class ForumController extends GetxController {
 
   setSelectedTag(int value) {
     selectedTag.value = value;
+  }
+
+  Future<void> addForum() async {
+    titleFocus.unfocus();
+    contentFocus.unfocus();
+
+    ForumService()
+        .addForm(
+      title: titleController.text,
+      content: contentController.text,
+      tag: selectedTag.value,
+    )
+        .then((_) {
+      Get.back();
+      showSuccessSnackbar(
+        title: "Success",
+        message: "Berhasil mengupload forum",
+      );
+    });
   }
 }
