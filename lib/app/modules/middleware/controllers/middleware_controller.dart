@@ -17,6 +17,7 @@ class MiddlewareController extends GetxController {
         if (user == null) {
           Get.offAllNamed(Routes.LOGIN);
         } else {
+          AuthService().updateStatusUser('online');
           var streamUser = await AuthService().getAuthUserStrem();
           userModel = await AuthService().getUserData(null);
 

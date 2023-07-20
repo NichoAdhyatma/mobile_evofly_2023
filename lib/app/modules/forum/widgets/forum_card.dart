@@ -1,4 +1,8 @@
+import 'package:Evofly/app/modules/forum/models/forum_model.dart';
+import 'package:Evofly/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:intl/intl.dart';
 
 import '../../../themes/base_theme.dart';
 import 'label_tag.dart';
@@ -6,7 +10,10 @@ import 'label_tag.dart';
 class ForumCard extends StatelessWidget {
   const ForumCard({
     super.key,
+    required this.forumModel,
   });
+
+  final ForumModel forumModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +21,15 @@ class ForumCard extends StatelessWidget {
       color: BaseTheme.whiteColor,
       borderRadius: BorderRadius.circular(20),
       elevation: 5.0,
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
                 LabelTag(
-                  id: 0,
+                  id: forumModel.tag,
                   text: "Sosial Media",
                 ),
               ],
@@ -33,8 +40,8 @@ class ForumCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Martis Ikmal",
-                  style: BaseTheme.secondaryText.copyWith(
+                  forumModel.uid == AuthService().firebaseAuth.currentUser?.uid ? "You" : forumModel.author,
+                  style: BaseTheme.mediumText.copyWith(
                     fontSize: 12,
                   ),
                 ),
@@ -42,7 +49,7 @@ class ForumCard extends StatelessWidget {
                   width: 4,
                 ),
                 Text(
-                  "8 menit lalu",
+                  timeago.format(forumModel.timestamp, locale: 'id_ID'),
                   style: BaseTheme.secondaryText.copyWith(
                     fontSize: 10,
                   ),
@@ -53,14 +60,14 @@ class ForumCard extends StatelessWidget {
               height: 4,
             ),
             Text(
-              "Bagaimana cara mengelola bisnis di sosial media untuk pemula?",
+              forumModel.title,
               style: BaseTheme.boldText.copyWith(fontSize: 14),
             ),
             const SizedBox(
               height: 4,
             ),
             Text(
-              "Saya mempunyai bisnis keripik singkong, dan saudara saya menyarankan untuk memasarkannya lewat...",
+              forumModel.content,
               style: BaseTheme.secondaryText.copyWith(fontSize: 12),
             ),
             const SizedBox(
@@ -94,5 +101,3 @@ class ForumCard extends StatelessWidget {
     );
   }
 }
-
-

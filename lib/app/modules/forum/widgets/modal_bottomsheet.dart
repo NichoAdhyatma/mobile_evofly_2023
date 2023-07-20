@@ -1,4 +1,3 @@
-import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
 import 'package:Evofly/app/modules/forum/widgets/sorting_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

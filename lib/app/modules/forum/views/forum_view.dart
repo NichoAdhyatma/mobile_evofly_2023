@@ -1,3 +1,5 @@
+import 'package:Evofly/app/themes/base_theme.dart';
+import 'package:Evofly/app/widgets/skeleton_cards.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,21 +15,43 @@ class ForumView extends GetView<ForumController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
+      body: GetX<ForumController>(
+        init: ForumController(),
+        initState: (_) => controller.fetchForum(),
+        builder: (ForumController controller) => RefreshIndicator(
+          backgroundColor: BaseTheme.secondaryColor,
+          onRefresh: () async {
+            await controller.fetchForum();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Header(),
-                SizedBox(
+                const Header(),
+                const SizedBox(
                   height: 20,
                 ),
-                ForumCard(),
+                Expanded(
+                  child: controller.isLoading.value
+                      ? const SkeletonCardList(count: 6)
+                      : ListView.builder(
+                          controller: controller.scrollController,
+                          itemCount: controller.forumList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var forum = controller.forumList[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: ForumCard(
+                                forumModel: forum,
+                              ),
+                            );
+                          },
+                        ),
+                ),
               ],
             ),
           ),
-        ],
+        ),
       ),
       floatingActionButton: const NewPostButton(),
     );

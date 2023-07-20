@@ -10,6 +10,15 @@ class LabelTag extends GetView<ForumController> {
   final String text;
   final int id;
 
+  static const List<String> labelList = [
+    'Social Media',
+    'Inovasi',
+    'Keuangan',
+    'Bisnis',
+    'Digital Marketing',
+    'Teknologi'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,7 +36,7 @@ class LabelTag extends GetView<ForumController> {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            text,
+            id != 0 ? labelList[id-1] : text,
             style: BaseTheme.mediumText.copyWith(
               color: BaseTheme.whiteColor,
             ),
