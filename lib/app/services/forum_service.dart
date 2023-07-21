@@ -31,7 +31,7 @@ class ForumService extends BaseService {
 
   Future<List<ForumModel>> getForum() async {
     return handleFirestoreError(() async {
-      var forum = await firestore.collection("forum").get();
+      var forum = await firestore.collection("forum").orderBy('timestamp', descending: true).get();
 
       return forum.docs
           .map(

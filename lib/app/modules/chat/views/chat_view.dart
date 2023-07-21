@@ -1,4 +1,3 @@
-import 'package:Evofly/app/services/chat_service.dart';
 import 'package:Evofly/app/widgets/back_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../widgets/skeleton_cards.dart';
 import '../../../widgets/user_card.dart';
 import '../controllers/chat_controller.dart';
+import '../widgets/new_chat_button.dart';
 
 class ChatView extends GetView<ChatController> {
   const ChatView({Key? key}) : super(key: key);
@@ -33,6 +33,9 @@ class ChatView extends GetView<ChatController> {
                 },
               ),
       ),
+      floatingActionButton: const NewChatButton(),
     );
   }
 }
+
+

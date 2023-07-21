@@ -1,7 +1,6 @@
 import 'package:Evofly/app/helper/notif.dart';
 import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/services/auth_service.dart';
-import 'package:Evofly/app/services/base_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 

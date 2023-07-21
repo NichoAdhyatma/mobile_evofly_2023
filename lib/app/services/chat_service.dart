@@ -8,30 +8,57 @@ import 'package:get/get.dart';
 class ChatService extends BaseService {
   var isMentor = Get.find<MiddlewareController>().userModel?.isMentor;
 
+  Future<List<UserModel>> getContact() async {
+    return handleFirestoreError(
+      () async {
+        var query = await firestore
+            .collection('users')
+            .where('isMentor', isEqualTo: isMentor! ? false : true)
+            .get();
+
+        return query.docs.map((e) => UserModel.fromJson(e.data())).toList();
+      },
+    );
+  }
+
+  Future<Stream<List<Map<String, dynamic>>>> getContactStream() async {
+    return handleFirestoreError(
+      () async {
+        var queryStream = firestore
+            .collection('rooms')
+            .where(isMentor! ? 'mentor_id' : 'user_id',
+                isEqualTo: firebaseAuth.currentUser?.uid)
+            .snapshots();
+
+        return queryStream
+            .map((event) => event.docs.map((e) => e.data()).toList());
+      },
+    );
+  }
+
   Future<Stream<List<UserModel>>?> getListUserStream() async {
     return handleFirestoreError(
       () async {
         Stream<QuerySnapshot<Map<String, dynamic>>> queryStream;
         var userDoc = firestore.collection("users");
 
-        if (isMentor!) {
-          var roomDoc = await firestore
-              .collection('rooms')
-              .where('mentor_id', isEqualTo: firebaseAuth.currentUser?.uid)
-              .get();
+        var roomDoc = await firestore
+            .collection('rooms')
+            .where(isMentor! ? 'mentor_id' : 'user_id',
+                isEqualTo: firebaseAuth.currentUser?.uid)
+            .get();
 
-          var listUid = roomDoc.docs
-              .map((doc) => doc.data()['user_id'] as String)
-              .toList();
+        var listUid = roomDoc.docs
+            .map((doc) =>
+                doc.data()[isMentor! ? 'user_id' : 'mentor_id'] as String)
+            .toList();
 
-          if (listUid.isNotEmpty) {
-            queryStream = userDoc.where("uid", whereIn: listUid).snapshots();
-          } else {
-            return null;
-          }
+        if (listUid.isNotEmpty) {
+          queryStream = userDoc.where("uid", whereIn: listUid).snapshots();
         } else {
-          queryStream = userDoc.where("isMentor", isEqualTo: true).snapshots();
+          return null;
         }
+
         return queryStream.map(
           (snapshot) => snapshot.docs
               .map((doc) => UserModel.fromJson(doc.data()))
@@ -128,6 +155,7 @@ class ChatService extends BaseService {
                 'user_id': id,
                 'last_message': message,
                 'send_by': firebaseAuth.currentUser?.uid,
+                'timestamp': FieldValue.serverTimestamp(),
                 'notify': false,
               })
             : roomRef.set(
@@ -136,6 +164,7 @@ class ChatService extends BaseService {
                   'user_id': firebaseAuth.currentUser?.uid,
                   'last_message': message,
                   'send_by': firebaseAuth.currentUser?.uid,
+                  'timestamp': FieldValue.serverTimestamp(),
                   'notify': false,
                 },
               );

@@ -2,7 +2,6 @@ import 'package:Evofly/app/modules/forum/models/forum_model.dart';
 import 'package:Evofly/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:intl/intl.dart';
 
 import '../../../themes/base_theme.dart';
 import 'label_tag.dart';
@@ -21,7 +20,7 @@ class ForumCard extends StatelessWidget {
       color: BaseTheme.whiteColor,
       borderRadius: BorderRadius.circular(20),
       elevation: 5.0,
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

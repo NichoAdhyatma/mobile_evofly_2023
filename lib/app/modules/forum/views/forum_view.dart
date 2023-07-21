@@ -21,35 +21,40 @@ class ForumView extends GetView<ForumController> {
         builder: (ForumController controller) => RefreshIndicator(
           backgroundColor: BaseTheme.secondaryColor,
           onRefresh: () async {
+            await Future.delayed(const Duration(milliseconds: 300));
             await controller.fetchForum();
           },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                const Header(),
-                const SizedBox(
-                  height: 20,
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Column(
+                  children: [
+                    const Header(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    controller.isLoading.value
+                        ? const SkeletonCardList(count: 6)
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            controller: controller.scrollController,
+                            itemCount: controller.forumList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var forum = controller.forumList[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 16.0),
+                                child: ForumCard(
+                                  forumModel: forum,
+                                ),
+                              );
+                            },
+                          ),
+                  ],
                 ),
-                Expanded(
-                  child: controller.isLoading.value
-                      ? const SkeletonCardList(count: 6)
-                      : ListView.builder(
-                          controller: controller.scrollController,
-                          itemCount: controller.forumList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var forum = controller.forumList[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 12.0),
-                              child: ForumCard(
-                                forumModel: forum,
-                              ),
-                            );
-                          },
-                        ),
-                ),
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

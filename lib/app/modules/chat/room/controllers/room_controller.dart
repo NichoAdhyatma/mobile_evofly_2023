@@ -51,7 +51,7 @@ class RoomController extends GetxController {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {
         scrollController.animateTo(
-          scrollController.position.maxScrollExtent,
+          scrollController.position.maxScrollExtent + 100,
           duration: const Duration(milliseconds: 100),
           curve: Curves.easeIn,
         );

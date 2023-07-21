@@ -15,6 +15,8 @@ class SkeletonCardList extends StatelessWidget {
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[400]!,
       child: ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: count,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
