@@ -72,7 +72,7 @@ class Notif extends GetxController {
         AndroidNotificationDetails(
       'evofly',
       'message',
-      channelDescription: 'your channel description',
+      channelDescription: 'menerima notif pesan dari user lain',
       importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker',

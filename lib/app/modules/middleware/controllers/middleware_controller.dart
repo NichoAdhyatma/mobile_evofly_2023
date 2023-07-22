@@ -31,6 +31,7 @@ class MiddlewareController extends GetxController {
             message: "Selamat Datang di Evofly",
           );
 
+
           Notif.getStreamNotif();
 
           Get.offAllNamed(Routes.LAYOUT);
