@@ -17,45 +17,46 @@ class Header extends GetView<ForumController> {
         duration: const Duration(milliseconds: 330),
         child: controller.isVisible.value
             ? Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Forum',
-                    style: BaseTheme.mediumText.copyWith(
-                      fontSize: 25,
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Forum',
+                      style: BaseTheme.mediumText.copyWith(
+                        fontSize: 25,
+                      ),
                     ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      backgroundColor: BaseTheme.semidark,
-                    ),
-                    onPressed: () {
-                      buildModalBottomSheet(context).whenComplete(
-                        () => controller.setSelectedTag(0),
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        Text(
-                          "Sorting dan Tag",
-                          style: BaseTheme.mediumText.copyWith(
-                            color: BaseTheme.whiteColor,
-                            fontSize: 15,
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        backgroundColor: BaseTheme.semidark,
+                      ),
+                      onPressed: () {
+                        buildModalBottomSheet(context, controller).whenComplete(() {
+                          controller.setSelectedTag(0);
+                          controller.selectedSort(0);
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            "Sorting dan Tag",
+                            style: BaseTheme.mediumText.copyWith(
+                              color: BaseTheme.whiteColor,
+                              fontSize: 15,
+                            ),
                           ),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          size: 20,
-                        ),
-                      ],
+                          const Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 20,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            )
+                  ],
+                ),
+              )
             : const SizedBox.shrink(),
       ),
     );

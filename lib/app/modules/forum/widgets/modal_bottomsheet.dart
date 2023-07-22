@@ -1,10 +1,12 @@
+import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
 import 'package:Evofly/app/modules/forum/widgets/sorting_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../themes/base_theme.dart';
 import 'label_row.dart';
 
-Future<dynamic> buildModalBottomSheet(BuildContext context) {
+Future<dynamic> buildModalBottomSheet(
+    BuildContext context, ForumController controller) {
   return showModalBottomSheet(
     context: context,
     builder: (context) => Column(
@@ -41,14 +43,14 @@ Future<dynamic> buildModalBottomSheet(BuildContext context) {
                         height: 10,
                       ),
                       const SortingCheckBox(
-                        id: 0,
+                        id: 1,
                         text: "Postingan Terbaru",
                       ),
                       const SizedBox(
                         height: 4,
                       ),
                       const SortingCheckBox(
-                        id: 1,
+                        id: 2,
                         text: "Postingan Terlama",
                       ),
                       const Divider(
@@ -75,6 +77,7 @@ Future<dynamic> buildModalBottomSheet(BuildContext context) {
                         width: Get.width,
                         child: ElevatedButton(
                           onPressed: () {
+                            controller.fetchForum();
                             Get.back();
                           },
                           child: const Text("Tampilkan Postingan"),
@@ -87,6 +90,9 @@ Future<dynamic> buildModalBottomSheet(BuildContext context) {
                         width: Get.width,
                         child: TextButton(
                           onPressed: () {
+                            controller.selectedTag(0);
+                            controller.selectedTag(0);
+                            controller.fetchForum();
                             Get.back();
                           },
                           child: Text(

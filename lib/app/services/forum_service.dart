@@ -29,11 +29,19 @@ class ForumService extends BaseService {
     );
   }
 
-  Future<List<ForumModel>> getForum() async {
+  Future<List<ForumModel>> getForum(
+      {int selectedSort = 0, int selectedTag = 0}) async {
     return handleFirestoreError(() async {
-      var forum = await firestore.collection("forum").orderBy('timestamp', descending: true).get();
+      var forum = await firestore.collection("forum").orderBy('timestamp',
+          descending: selectedSort == 1 || selectedSort == 0 ? true : false);
 
-      return forum.docs
+      if (selectedTag != 0) {
+        forum = forum.where('tag', isEqualTo: selectedTag);
+      }
+
+      var filteredForum = await forum.get();
+
+      return filteredForum.docs
           .map(
             (doc) => ForumModel.fromJson(doc.data()),
           )

@@ -25,10 +25,10 @@ class ForumCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               children: [
                 LabelTag(
-                  id: forumModel.tag,
+                  id: 0,
                   text: "Sosial Media",
                 ),
               ],

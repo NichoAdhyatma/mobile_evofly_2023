@@ -93,7 +93,7 @@ class ForumController extends GetxController {
     isLoading.value = true;
 
     ForumService()
-        .getForum()
+        .getForum(selectedTag: selectedTag.value, selectedSort: selectedSort.value)
         .then((forum) => forumList.assignAll(forum))
         .whenComplete(
           () => isLoading.value = false,
