@@ -29,6 +29,7 @@ class Notif extends GetxController {
                   BaseService().firebaseAuth.currentUser?.uid) {
             UserModel user =
                 await AuthService().getUserData(element['send_by']);
+
             Notif.showNotif(
               title: "Pesan Masuk dari ${user.name}",
               body: element['last_message'],

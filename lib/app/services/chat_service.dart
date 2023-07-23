@@ -1,3 +1,4 @@
+import 'package:Evofly/app/helper/pusher.dart';
 import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/modules/chat/room/models/message_model.dart';
 import 'package:Evofly/app/modules/middleware/controllers/middleware_controller.dart';
@@ -6,7 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class ChatService extends BaseService {
-  var isMentor = Get.find<MiddlewareController>().userModel?.isMentor;
+  static final MiddlewareController controller = Get.find<MiddlewareController>();
+  String? name =  controller.userModel?.name;
+  bool? isMentor = controller.userModel?.isMentor;
 
   Future<List<UserModel>> getContact() async {
     return handleFirestoreError(
@@ -143,6 +146,8 @@ class ChatService extends BaseService {
   }
 
   Future<void> sendMessage(String id, String message) async {
+    PusherNotification().sendPushNotification(id, title: "Pesan masuk dari ${name}", body: message);
+
     handleFirestoreError(
       () async {
         var roomRef = firestore.collection('rooms').doc(isMentor!

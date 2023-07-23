@@ -19,6 +19,7 @@ class BaseService {
       final errorMessage =
           (e is FirebaseException) ? e.message : 'Terjadi Kesalahan';
       showErrorSnackbar(title: 'Pesan Error', message: errorMessage!);
+      print(errorMessage);
       return Future.value();
     }
   }

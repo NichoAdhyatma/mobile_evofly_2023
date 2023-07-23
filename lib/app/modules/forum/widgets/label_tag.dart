@@ -2,6 +2,7 @@ import 'package:Evofly/app/modules/forum/controllers/forum_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../const/labe_list.dart';
 import '../../../themes/base_theme.dart';
 
 class LabelTag extends GetView<ForumController> {
@@ -9,15 +10,6 @@ class LabelTag extends GetView<ForumController> {
 
   final String text;
   final int id;
-
-  static const List<String> labelList = [
-    'Social Media',
-    'Inovasi',
-    'Keuangan',
-    'Bisnis',
-    'Digital Marketing',
-    'Teknologi'
-  ];
 
   @override
   Widget build(BuildContext context) {

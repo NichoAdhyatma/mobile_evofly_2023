@@ -3,12 +3,14 @@ import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:pusher_beams/pusher_beams.dart';
 
 import '../../../helper/evo_snackbar.dart';
 import '../../../routes/app_pages.dart';
 
 class MiddlewareController extends GetxController {
   UserModel? userModel;
+  AuthService authService = AuthService();
 
   void authStateChange() {
     FirebaseAuth.instance.authStateChanges().listen(
@@ -16,9 +18,9 @@ class MiddlewareController extends GetxController {
         if (user == null) {
           Get.offAllNamed(Routes.LOGIN);
         } else {
-          AuthService().updateStatusUser('online');
-          var streamUser = await AuthService().getAuthUserStrem();
-          userModel = await AuthService().getUserData(null);
+          authService.updateStatusUser('online');
+          var streamUser = await authService.getAuthUserStrem();
+          userModel = await authService.getUserData(null);
 
           streamUser.listen(
             (user) {
@@ -31,8 +33,9 @@ class MiddlewareController extends GetxController {
             message: "Selamat Datang di Evofly",
           );
 
-
           Notif.getStreamNotif();
+
+          await PusherBeams.instance.setDeviceInterests([userModel!.uid]);
 
           Get.offAllNamed(Routes.LAYOUT);
         }

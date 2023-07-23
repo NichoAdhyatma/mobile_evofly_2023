@@ -1,3 +1,4 @@
+import 'package:Evofly/app/const/labe_list.dart';
 import 'package:Evofly/app/modules/forum/models/forum_model.dart';
 import 'package:Evofly/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,11 @@ class ForumCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
                 LabelTag(
+                  text: labelList[forumModel.tag - 1],
                   id: 0,
-                  text: "Sosial Media",
                 ),
               ],
             ),
@@ -39,7 +40,9 @@ class ForumCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  forumModel.uid == AuthService().firebaseAuth.currentUser?.uid ? "You" : forumModel.author,
+                  forumModel.uid == AuthService().firebaseAuth.currentUser?.uid
+                      ? "You"
+                      : forumModel.author,
                   style: BaseTheme.mediumText.copyWith(
                     fontSize: 12,
                   ),
