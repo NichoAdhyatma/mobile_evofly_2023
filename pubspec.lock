@@ -206,6 +206,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   flutter_inappwebview:
     dependency: transitive
     description:
@@ -272,6 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.5"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -392,6 +408,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  pusher_beams:
+    dependency: "direct main"
+    description:
+      name: pusher_beams
+      sha256: "0564aac34c61a4e51badd896574653bc32f0a69ab902ddbb800cd421c1e9f4f8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  pusher_beams_android:
+    dependency: transitive
+    description:
+      name: pusher_beams_android
+      sha256: b60f9f4b2b83cd4b02d6de6e28ef8daf0f9a67493c5ff796da1387239b1a25bd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  pusher_beams_ios:
+    dependency: transitive
+    description:
+      name: pusher_beams_ios
+      sha256: "09871ce8ce5a64d43ed5bed3b3816a9dfa507e492bfe4bd0d3168a094c7d500c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  pusher_beams_platform_interface:
+    dependency: transitive
+    description:
+      name: pusher_beams_platform_interface
+      sha256: "90645da247512f080a29d95b23a46998d2f81c37c849376288debf9625457731"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  pusher_beams_web:
+    dependency: transitive
+    description:
+      name: pusher_beams_web
+      sha256: f95a14e497263a75f7025fc3c5471fe315f36fb85b113022ca1ac579e10bbe38
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   shimmer:
     dependency: "direct main"
     description:

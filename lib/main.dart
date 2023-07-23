@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:pusher_beams/pusher_beams.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/themes/app_theme.dart';
@@ -23,6 +25,11 @@ void main() async {
   await initializeDateFormatting('id_ID', null);
 
   timeago.setLocaleMessages('id_ID', timeago.IdMessages());
+
+  await dotenv.load(fileName: ".env");
+
+  await PusherBeams.instance.start(dotenv.env['INSTANCE_ID']!);
+  await PusherBeams.instance.setDeviceInterests(['hello']);
 
   runApp(
     GetMaterialApp(
