@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:Evofly/app/helper/notif.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -9,12 +12,16 @@ class FireBaseNotif extends GetxController {
   FireBaseNotif() {
     initFcmToken();
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('Handling a foreground message: ${message.messageId}');
-      print('Message data: ${message.data}');
-      print('Message notification: ${message.notification?.title}');
-      print('Message notification: ${message.notification?.body}');
-    });
+    FirebaseMessaging.onMessageOpenedApp.listen(
+      (RemoteMessage message) {
+        Notif.showNotif(
+          id: Random().nextInt(99999),
+          title: message.notification!.title!,
+          body: message.notification!.body!,
+          payload: "Message chat",
+        );
+      },
+    );
   }
 
   void initFcmToken() async {

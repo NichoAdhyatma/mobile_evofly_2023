@@ -19,8 +19,8 @@ class PusherNotification {
       'interests': [interest],
       'fcm': {
         'notification': {
-          'title': 'Hello specific',
-          'body': 'Hello, world!',
+          'title': title,
+          'body': body,
         }
       }
     };

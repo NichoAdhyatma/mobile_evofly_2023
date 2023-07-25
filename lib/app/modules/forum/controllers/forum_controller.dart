@@ -86,6 +86,9 @@ class ForumController extends GetxController {
       },
     );
 
+    selectedTag.value = 0;
+    selectedTag.value = 0;
+
     fetchForum();
   }
 

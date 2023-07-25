@@ -1,4 +1,3 @@
-import 'package:Evofly/app/helper/notif.dart';
 import 'package:Evofly/app/modules/auth/models/user.dart';
 import 'package:Evofly/app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,8 +31,6 @@ class MiddlewareController extends GetxController {
             title: "Anda telah Masuk ${userModel?.name}",
             message: "Selamat Datang di Evofly",
           );
-
-          Notif.getStreamNotif();
 
           await PusherBeams.instance.setDeviceInterests([userModel!.uid]);
 
